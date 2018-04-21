@@ -35,6 +35,15 @@ namespace WPFSharpener
         public SharpDisplay()
         {
             InitializeComponent();
+            this.Loaded += (sender, args) =>
+            {
+                if(this.Vector == null)
+                {
+                    this.Vector = Constants.DEFAULT_PATH;
+                }
+            };
         }
+
+        
     }
 }
