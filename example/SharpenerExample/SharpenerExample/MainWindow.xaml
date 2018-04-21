@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SharpenerExample"
         mc:Ignorable="d"
+        xmlns:sharpen="clr-namespace:WPFSharpener;assembly=WPFSharpener"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <sharpen:SharpDisplay/>
     </Grid>
 </Window>
