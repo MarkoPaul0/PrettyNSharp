@@ -20,6 +20,18 @@ namespace WPFSharpener
     /// </summary>
     public partial class SharpDisplay : UserControl
     {
+
+        #region Dependency Properties
+        public Path Vector { get { return (Path)GetValue(VectorProperty); } set { SetValue(VectorProperty, value); } }
+        public static readonly DependencyProperty VectorProperty =
+            DependencyProperty.Register("Vector", typeof(Path), typeof(SharpDisplay), new PropertyMetadata(null));
+
+        public Brush VectorBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
+        public static readonly DependencyProperty VectorBrushProperty =
+            DependencyProperty.Register("VectorBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+        #endregion
+
+
         public SharpDisplay()
         {
             InitializeComponent();
