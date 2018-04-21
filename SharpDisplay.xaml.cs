@@ -47,6 +47,34 @@ namespace WPFSharpener
         public Brush BackgroundOnHover { get { return (Brush)GetValue(BackgroundOnHoverProperty); } set { SetValue(BackgroundOnHoverProperty, value); } }
         public static readonly DependencyProperty BackgroundOnHoverProperty =
             DependencyProperty.Register("BackgroundOnHover", typeof(Brush), typeof(SharpDisplay), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.LightGreen)));
+
+        public AdvancedSize VectorSize { get { return (AdvancedSize)GetValue(VectorSizeProperty); } set { SetValue(VectorSizeProperty, value); } }
+        public static readonly DependencyProperty VectorSizeProperty =
+            DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpDisplay), new FrameworkPropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
+
+        private static void onVectorSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            SharpDisplay this_ = (SharpDisplay)d;
+            AdvancedSize new_size = (AdvancedSize)e.NewValue;
+
+            if (new_size.HeightType == AdvancedSize.SizeType.Auto || new_size.WidthType == AdvancedSize.SizeType.Auto)
+            {
+                this_.Stretch = Stretch.Uniform;
+            }
+            //TODO: add support for percentage sizes, note that for that I will probably need to introduce ActualSize properties
+            else
+            {
+                this_.Stretch = Stretch.Fill;
+            }
+        }
+
+        private Stretch _Stretch;
+        public Stretch Stretch
+        {
+            get { return this._Stretch; }
+            set { if (!Object.Equals(value, this._Stretch)) { this._Stretch = value; this.RaisePropertyChanged(); } }
+        }
+
         #endregion
 
 
