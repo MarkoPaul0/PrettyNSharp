@@ -12,8 +12,8 @@
             <Border Name="main_border" Background="Transparent">
                 <Path Name="vector" Stretch="{Binding ElementName=SDControl, Path=Stretch}" Data="{Binding ElementName=SDControl, Path=Vector.Data}" 
                       Fill="{Binding ElementName=SDControl, Path=VectorBrush}"
-                      Width="{Binding ElementName=SDControl, Path=VectorSize.Width}"
-                      Height="{Binding ElementName=SDControl, Path=VectorSize.Height}"/>
+                      Width="{Binding ElementName=SDControl, Path=VectorSize.Width.Value}"
+                      Height="{Binding ElementName=SDControl, Path=VectorSize.Height.Value}"/>
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">

@@ -57,7 +57,7 @@ namespace WPFSharpener
             SharpDisplay this_ = (SharpDisplay)d;
             AdvancedSize new_size = (AdvancedSize)e.NewValue;
 
-            if (new_size.HeightType == AdvancedSize.SizeType.Auto || new_size.WidthType == AdvancedSize.SizeType.Auto)
+            if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
             {
                 this_.Stretch = Stretch.Uniform;
             }
