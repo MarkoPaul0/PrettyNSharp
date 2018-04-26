@@ -20,7 +20,7 @@ namespace WPFSharpener
     /// <summary>
     /// Interaction logic for SharpDisplay.xaml
     /// </summary>
-    public partial class SharpDisplay : UserControl
+    public partial class SharpDisplay : UserControl, INotifyPropertyChanged
     {
 
         #region Dependency Properties
@@ -36,14 +36,6 @@ namespace WPFSharpener
         public static readonly DependencyProperty HighlightBrushProperty =
             DependencyProperty.Register("HighlightBrush", typeof(Brush), typeof(SharpDisplay), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.Black)));
 
-        public double VectorWidth { get { return (double)GetValue(VectorWidthProperty); } set { SetValue(VectorWidthProperty, value); } }
-        public static readonly DependencyProperty VectorWidthProperty =
-            DependencyProperty.Register("VectorWidth", typeof(double), typeof(SharpDisplay), new FrameworkPropertyMetadata(default(double)));
-
-        public double VectorHeight { get { return (double)GetValue(VectorHeightProperty); } set { SetValue(VectorHeightProperty, value); } }
-        public static readonly DependencyProperty VectorHeightProperty =
-            DependencyProperty.Register("VectorHeight", typeof(double), typeof(SharpDisplay), new FrameworkPropertyMetadata(default(double)));
-
         public Brush BackgroundOnHover { get { return (Brush)GetValue(BackgroundOnHoverProperty); } set { SetValue(BackgroundOnHoverProperty, value); } }
         public static readonly DependencyProperty BackgroundOnHoverProperty =
             DependencyProperty.Register("BackgroundOnHover", typeof(Brush), typeof(SharpDisplay), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.LightGreen)));
@@ -57,25 +49,52 @@ namespace WPFSharpener
             SharpDisplay this_ = (SharpDisplay)d;
             AdvancedSize new_size = (AdvancedSize)e.NewValue;
 
+            this_.Stretch = Stretch.Fill;
             if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
             {
                 this_.Stretch = Stretch.Uniform;
             }
-            //TODO: add support for percentage sizes, note that for that I will probably need to introduce ActualSize properties
-            else
+
+            this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
+            this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth);
+
+
+            this_.Loaded += (sender, args) =>
             {
                 this_.Stretch = Stretch.Fill;
-            }
-            if (new_size.Height.Unit == AdvancedLength.UnitType.Star)
-            {
-                new_size.Height.Value = this_.Height;
-            }
-            if (new_size.Width.Unit == AdvancedLength.UnitType.Star)
-            {
-                new_size.Width.Value = this_.Width;
-            }
+                if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
+                {
+                    this_.Stretch = Stretch.Uniform;
+                }
+
+                this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
+                this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth);
+            };
         }
 
+        double computeActualVectorSize(AdvancedLength len, double container_len)
+        {
+            if (len.Unit == AdvancedLength.UnitType.Auto)
+            {
+                return container_len; //value does not matter because stretch is set to uniform
+            }
+            else if (len.Unit == AdvancedLength.UnitType.Percent)
+            {
+                return len.Value * container_len / 100;
+            }
+            else if (len.Unit == AdvancedLength.UnitType.Pixel)
+            {
+                return len.Value;
+            }
+            else if (len.Unit == AdvancedLength.UnitType.Star)
+            {
+                return container_len;
+            }
+            throw new InvalidEnumArgumentException("Unknwon enum value: " + len.Unit);
+        }
+        #endregion
+
+        #region GUI Properties
         private Stretch _Stretch;
         public Stretch Stretch
         {
@@ -83,6 +102,19 @@ namespace WPFSharpener
             set { if (!Object.Equals(value, this._Stretch)) { this._Stretch = value; this.RaisePropertyChanged(); } }
         }
 
+        private double _ActualVectorWidth;
+        public double ActualVectorWidth
+        {
+            get { return this._ActualVectorWidth; }
+            set { if (!Object.Equals(value, this._ActualVectorWidth)) { this._ActualVectorWidth = value; this.RaisePropertyChanged(); } }
+        }
+
+        private double _ActualVectorHeight;
+        public double ActualVectorHeight
+        {
+            get { return this._ActualVectorHeight; }
+            set { if (!Object.Equals(value, this._ActualVectorHeight)) { this._ActualVectorHeight = value; this.RaisePropertyChanged(); } }
+        }
         #endregion
 
 
