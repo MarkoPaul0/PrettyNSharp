@@ -49,6 +49,18 @@ namespace WPFSharpener
             SharpDisplay this_ = (SharpDisplay)d;
             AdvancedSize new_size = (AdvancedSize)e.NewValue;
 
+            if (this_.IsLoaded)
+            {
+                updateVectorSize(this_, new_size);
+            }
+            else
+            {
+                this_.Loaded += (sender, args) => updateVectorSize(this_, new_size);
+            }
+        }
+
+        private static void updateVectorSize(SharpDisplay this_, AdvancedSize new_size)
+        {
             this_.Stretch = Stretch.Fill;
             if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
             {
@@ -57,19 +69,6 @@ namespace WPFSharpener
 
             this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
             this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth);
-
-
-            this_.Loaded += (sender, args) =>
-            {
-                this_.Stretch = Stretch.Fill;
-                if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
-                {
-                    this_.Stretch = Stretch.Uniform;
-                }
-
-                this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
-                this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth);
-            };
         }
 
         double computeActualVectorSize(AdvancedLength len, double container_len)
@@ -128,6 +127,8 @@ namespace WPFSharpener
                     this.Vector = Constants.DEFAULT_PATH;
                 }
             };
+
+            this.SizeChanged += (sender, args) => updateVectorSize(this, this.VectorSize);
         }
 
         #region INotifyPropertyChanged Implementation

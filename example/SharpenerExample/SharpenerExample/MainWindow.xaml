@@ -15,6 +15,6 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <sharpen:SharpDisplay Vector="{StaticResource Cross}" VectorBrush="Red" HighlightBrush="Coral" VectorSize="Auto,50%"/>
+        <sharpen:SharpDisplay Vector="{StaticResource Cross}" VectorBrush="Red" HighlightBrush="Coral" VectorSize="*,50%"/>
     </Grid>
 </Window>
