@@ -66,6 +66,14 @@ namespace WPFSharpener
             {
                 this_.Stretch = Stretch.Fill;
             }
+            if (new_size.Height.Unit == AdvancedLength.UnitType.Star)
+            {
+                new_size.Height.Value = this_.Height;
+            }
+            if (new_size.Width.Unit == AdvancedLength.UnitType.Star)
+            {
+                new_size.Width.Value = this_.Width;
+            }
         }
 
         private Stretch _Stretch;

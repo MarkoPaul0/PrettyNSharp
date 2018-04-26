@@ -10,7 +10,8 @@ namespace WPFSharpener
         {
             Auto = 0,
             Pixel = 1,
-            Percent = 2
+            Percent = 2,
+            Star = 3
         };
         //TODO: rename as unit
         private UnitType _Type = UnitType.Auto;
@@ -45,25 +46,32 @@ namespace WPFSharpener
             {
                 d_val = double.NaN;
                 type = UnitType.Auto;
-                return this;
             }
-            else if (string_value[string_value.Length - 1] == '%')
+            else if (string_value == "*")
             {
-                type = UnitType.Percent;
-                string_value = string_value.Remove(string_value.Length - 1);
+                d_val = double.NaN;
+                type = UnitType.Star;
             }
             else
             {
-                type = UnitType.Pixel;
-            }
+                if (string_value[string_value.Length - 1] == '%')
+                {
+                    type = UnitType.Percent;
+                    string_value = string_value.Remove(string_value.Length - 1);
+                }
+                else
+                {
+                    type = UnitType.Pixel;
+                }
 
-            try
-            {
-                d_val = double.Parse(string_value);
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException("Invalid string argument to construct Size!");
+                try
+                {
+                    d_val = double.Parse(string_value);
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException("Invalid string argument to construct Size!");
+                }
             }
             return new AdvancedLength(d_val, type);
         }
@@ -78,6 +86,10 @@ namespace WPFSharpener
             if (this._Type == UnitType.Auto)
             {
                 return "Auto";
+            }
+            else if (this._Type == UnitType.Star)
+            {
+                return "*";
             }
             else if (this._Type == UnitType.Percent)
             {
