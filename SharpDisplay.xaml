@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Template>
         <ControlTemplate>
-            <Border Name="main_border" Background="Transparent">
+            <Border Name="main_border" Background="{Binding ElementName=SDControl, Path=Background}">
                 <Path Name="vector" Stretch="{Binding ElementName=SDControl, Path=Stretch}" Data="{Binding ElementName=SDControl, Path=Vector.Data}" 
                       Fill="{Binding ElementName=SDControl, Path=VectorBrush}"
                       Width="{Binding ElementName=SDControl, Path=ActualVectorWidth}"

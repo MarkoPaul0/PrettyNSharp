@@ -34,15 +34,15 @@ namespace WPFSharpener
 
         public Brush HighlightBrush { get { return (Brush)GetValue(HighlightBrushProperty); } set { SetValue(HighlightBrushProperty, value); } }
         public static readonly DependencyProperty HighlightBrushProperty =
-            DependencyProperty.Register("HighlightBrush", typeof(Brush), typeof(SharpDisplay), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.Black)));
+            DependencyProperty.Register("HighlightBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(null));
 
         public Brush BackgroundOnHover { get { return (Brush)GetValue(BackgroundOnHoverProperty); } set { SetValue(BackgroundOnHoverProperty, value); } }
         public static readonly DependencyProperty BackgroundOnHoverProperty =
-            DependencyProperty.Register("BackgroundOnHover", typeof(Brush), typeof(SharpDisplay), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.LightGreen)));
+            DependencyProperty.Register("BackgroundOnHover", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(null));
 
         public AdvancedSize VectorSize { get { return (AdvancedSize)GetValue(VectorSizeProperty); } set { SetValue(VectorSizeProperty, value); } }
         public static readonly DependencyProperty VectorSizeProperty =
-            DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpDisplay), new FrameworkPropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
+            DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpDisplay), new PropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
 
         private static void onVectorSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -52,10 +52,6 @@ namespace WPFSharpener
             if (this_.IsLoaded)
             {
                 updateVectorSize(this_, new_size);
-            }
-            else
-            {
-                this_.Loaded += (sender, args) => updateVectorSize(this_, new_size);
             }
         }
 
@@ -126,6 +122,15 @@ namespace WPFSharpener
                 {
                     this.Vector = Constants.DEFAULT_PATH;
                 }
+                if (this.HighlightBrush == null)
+                {
+                    this.HighlightBrush = this.VectorBrush;
+                }
+                if (this.BackgroundOnHover == null)
+                {
+                    this.BackgroundOnHover = this.Background ?? new SolidColorBrush(Colors.Transparent);
+                }
+                updateVectorSize(this, this.VectorSize);
             };
 
             this.SizeChanged += (sender, args) => updateVectorSize(this, this.VectorSize);
