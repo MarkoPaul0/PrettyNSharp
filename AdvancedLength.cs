@@ -13,21 +13,20 @@ namespace WPFSharpener
             Percent = 2,
             Star = 3
         };
-        //TODO: rename as unit
-        private UnitType _Type = UnitType.Auto;
-        public UnitType Unit { get { return _Type; } set { _Type = value; } }
+
+        private UnitType _Unit = UnitType.Auto;
+        public UnitType Unit { get { return _Unit; } set { _Unit = value; } }
 
         private double _Value = double.NaN;
         public double Value { get { return _Value; } set { _Value = value; } }
 
         public AdvancedLength()
         {
-
         }
 
         public AdvancedLength(double value, UnitType unit_type)
         {
-            _Type = unit_type;
+            _Unit = unit_type;
             _Value = value;
         }
 
@@ -83,15 +82,15 @@ namespace WPFSharpener
 
         public override string ToString()
         {
-            if (this._Type == UnitType.Auto)
+            if (this._Unit == UnitType.Auto)
             {
                 return "Auto";
             }
-            else if (this._Type == UnitType.Star)
+            else if (this._Unit == UnitType.Star)
             {
                 return "*";
             }
-            else if (this._Type == UnitType.Percent)
+            else if (this._Unit == UnitType.Percent)
             {
                 return this._Value + "%";
             }
@@ -105,7 +104,7 @@ namespace WPFSharpener
         {
             if (destinationType != typeof(string))
             {
-                throw new Exception("Unable to convert an AdvancedSize object to " + destinationType + "!");
+                throw new Exception("Unable to convert an AdvancedLength object to " + destinationType + "!");
             }
             AdvancedLength len = (AdvancedLength)value;
             if (len == null)
@@ -113,7 +112,6 @@ namespace WPFSharpener
                 return null;
             }
             return this.ToString();
-
         }
         #endregion
     }

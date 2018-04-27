@@ -33,18 +33,20 @@ namespace WPFSharpener
 
         public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
         {
-            //TODO: check if value is a string
-            List<string> list = ((string)value).Split(',').ToList();
-            if (list.Count != 2)
-            {
-                throw new ArgumentException("Expecting a string with 2 values separated by a comma!");
-            }
             TypeConverter converter = TypeDescriptor.GetConverter(typeof(AdvancedLength));
-            if (converter.CanConvertFrom(typeof(string)))
+            List<string> list = ((string)value).Split(',').ToList();
+            if (list.Count == 1) // e.g. VectorSize="Auto" is interpreted as VectorSize="Auto,Auto"
+            {
+                return new AdvancedSize((AdvancedLength)converter.ConvertFrom(list[0]), (AdvancedLength)converter.ConvertFrom(list[0]));
+            }
+            else if (list.Count == 2) // e.g. VectorSize="200,Auto"
             {
                 return new AdvancedSize((AdvancedLength)converter.ConvertFrom(list[0]), (AdvancedLength)converter.ConvertFrom(list[1]));
             }
-            return null;
+            else
+            {
+                throw new ArgumentException("Expecting a string with 2 values separated by a comma!");
+            }
         }
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
