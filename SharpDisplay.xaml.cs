@@ -67,7 +67,7 @@ namespace WPFSharpener
             this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth);
         }
 
-        double computeActualVectorSize(AdvancedLength len, double container_len)
+        private double computeActualVectorSize(AdvancedLength len, double container_len)
         {
             if (len.Unit == AdvancedLength.UnitType.Auto)
             {

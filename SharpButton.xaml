@@ -1,12 +1,36 @@
-﻿<UserControl x:Class="WPFSharpener.SharpButton"
+﻿<Button x:Class="WPFSharpener.SharpButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFSharpener"
              mc:Ignorable="d" 
+             x:Name="SBControl"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
-</UserControl>
+    <Button.Template>
+        <ControlTemplate TargetType="{x:Type Button}">
+            <Border x:Name="main_border" BorderBrush="{Binding ElementName=SBControl, Path=BorderBrush}"
+                            BorderThickness="{Binding ElementName=SBControl, Path=BorderThickness}"
+                            Background="{Binding ElementName=SBControl, Path=Background}">
+                <Path x:Name="vector" Stretch="{Binding ElementName=SBControl, Path=Stretch}" 
+                          Data="{Binding ElementName=SBControl, Path=Vector.Data}" 
+                          Fill="{Binding ElementName=SBControl, Path=VectorBrush}"
+                          Width="{Binding ElementName=SBControl, Path=ActualVectorWidth}"
+                          Height="{Binding ElementName=SBControl, Path=ActualVectorHeight}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="main_border" Property="Background" Value="{Binding ElementName=SBControl, Path=BackgroundOnHover}"/>
+                    <Setter TargetName="vector" Property="Fill" Value="{Binding ElementName=SBControl, Path=HighlightBrush}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="main_border" Property="Background" Value="{Binding ElementName=SBControl, Path=BackgroundOnClick}"/>
+                    <Setter TargetName="vector" Property="Fill" Value="{Binding ElementName=SBControl, Path=HighlightBrush}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="vector" Property="Fill" Value="Gray"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Button.Template>
+</Button>
