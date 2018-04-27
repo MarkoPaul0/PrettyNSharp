@@ -17,6 +17,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <sharpen:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}" VectorBrush="Red" Background="LightGray" 
                               HighlightBrush="Coral" VectorSize="50%"/>
