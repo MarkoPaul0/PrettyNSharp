@@ -22,13 +22,19 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <sharpen:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}"/>
-        <sharpen:SharpButton Margin="5" Grid.Column="1" Vector="{StaticResource Cross}" VectorSize="Auto,50%"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <sharpen:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}" VectorBrush="Black"/>
+        <sharpen:SharpButton Margin="5" Grid.Column="1" Vector="{StaticResource PrettyNSharp}" VectorSize="Auto,50%"
                              Background="White" BackgroundOnHover="#007ACC" BackgroundOnClick="#49B3F9"
                              VectorBrush="Black" HighlightBrush="White"/>
-        <sharpen:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Cross}" VectorSize="Auto,50%"/>
+        <sharpen:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Star}" VectorSize="Auto,50%"/>
         <sharpen:SharpButton Margin="5" Grid.Column="3" Vector="{StaticResource Cross}" VectorSize="Auto,50%"
                              BackgroundOnHover="#E83140" HighlightBrush="White" BorderBrush="Transparent"/>
         <sharpen:SharpCheckbox Margin="5" Content="Click Me" Grid.Column="4"/>
+        <sharpen:SharpDisplay Margin="5" VectorBrush="#1BD741" Grid.Row="1" Grid.ColumnSpan="2" Vector="{StaticResource PrettyNSharp}"/>
+
     </Grid>
 </Window>
