@@ -100,7 +100,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PrettyNSharp.csproj">
+    <ProjectReference Include="..\..\prettynsharp\PrettyNSharp.csproj">
       <Project>{4737a681-d0cb-4871-8d6f-cffafad9b073}</Project>
       <Name>PrettyNSharp</Name>
     </ProjectReference>
