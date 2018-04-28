@@ -3,8 +3,8 @@ using System.ComponentModel;
 
 namespace WPFSharpener
 {
-    [TypeConverter(typeof(AdvancedLength))]
-    public class AdvancedLength : TypeConverter //the class is also its own type converter
+    [TypeConverter(typeof(AdvancedLengthConverter))]
+    public class AdvancedLength
     {
         public enum UnitType
         {
@@ -30,56 +30,6 @@ namespace WPFSharpener
             _Value = value;
         }
 
-        #region Type Converter
-        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
-        {
-            return sourceType == typeof(string);
-        }
-
-        public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
-        {
-            string string_value = (string)value;
-            double d_val;
-            UnitType type;
-            if (string_value == "Auto")
-            {
-                d_val = double.NaN;
-                type = UnitType.Auto;
-            }
-            else if (string_value == "*")
-            {
-                d_val = double.NaN;
-                type = UnitType.Star;
-            }
-            else
-            {
-                if (string_value[string_value.Length - 1] == '%')
-                {
-                    type = UnitType.Percent;
-                    string_value = string_value.Remove(string_value.Length - 1);
-                }
-                else
-                {
-                    type = UnitType.Pixel;
-                }
-
-                try
-                {
-                    d_val = double.Parse(string_value);
-                }
-                catch (Exception ex)
-                {
-                    throw new ArgumentException("Invalid string argument to construct Size!");
-                }
-            }
-            return new AdvancedLength(d_val, type);
-        }
-
-        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
-        {
-            return destinationType == typeof(string);
-        }
-
         public override string ToString()
         {
             if (this._Unit == UnitType.Auto)
@@ -99,6 +49,59 @@ namespace WPFSharpener
                 return this._Value.ToString();
             }
         }
+    }
+
+    
+    public class AdvancedLengthConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        {
+            return sourceType == typeof(string);
+        }
+
+        public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+        {
+            string string_value = (string)value;
+            double d_val;
+            AdvancedLength.UnitType type;
+            if (string_value == "Auto")
+            {
+                d_val = double.NaN;
+                type = AdvancedLength.UnitType.Auto;
+            }
+            else if (string_value == "*")
+            {
+                d_val = double.NaN;
+                type = AdvancedLength.UnitType.Star;
+            }
+            else
+            {
+                if (string_value[string_value.Length - 1] == '%')
+                {
+                    type = AdvancedLength.UnitType.Percent;
+                    string_value = string_value.Remove(string_value.Length - 1);
+                }
+                else
+                {
+                    type = AdvancedLength.UnitType.Pixel;
+                }
+
+                try
+                {
+                    d_val = double.Parse(string_value);
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException("Invalid string argument to construct Size!");
+                }
+            }
+            return new AdvancedLength(d_val, type);
+        }
+
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+        {
+            return destinationType == typeof(string);
+        }
 
         public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
         {
@@ -113,6 +116,5 @@ namespace WPFSharpener
             }
             return this.ToString();
         }
-        #endregion
     }
 }

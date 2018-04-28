@@ -5,8 +5,8 @@ using System.Linq;
 
 namespace WPFSharpener
 {
-    [TypeConverter(typeof(AdvancedSize))]
-    public class AdvancedSize : TypeConverter //the class is also its own type converter
+    [TypeConverter(typeof(AdvancedSizeConverter))]
+    public class AdvancedSize
     {
         private AdvancedLength _Width;
         private AdvancedLength _Height;
@@ -27,6 +27,13 @@ namespace WPFSharpener
         }
 
         #region Type Converter
+
+        #endregion
+    };
+
+    
+    public class AdvancedSizeConverter: TypeConverter
+    {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
             return sourceType == typeof(string);
@@ -60,6 +67,5 @@ namespace WPFSharpener
             AdvancedSize size = (AdvancedSize)value;
             return value == null ? null : size.Width + "," + size.Height;
         }
-        #endregion
-    };
+    }
 }
