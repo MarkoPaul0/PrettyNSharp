@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace WPFSharpener
+namespace PrettyNSharp
 {
     [TypeConverter(typeof(AdvancedSizeConverter))]
     public class AdvancedSize

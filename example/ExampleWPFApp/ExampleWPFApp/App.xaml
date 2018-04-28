@@ -1,7 +1,7 @@
-﻿<Application x:Class="SharpenerExample.App"
+﻿<Application x:Class="ExampleWPFApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SharpenerExample"
+             xmlns:local="clr-namespace:ExampleWPFApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace WPFSharpener
+namespace PrettyNSharp
 {
     [TypeConverter(typeof(AdvancedLengthConverter))]
     public class AdvancedLength

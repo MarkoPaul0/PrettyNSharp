@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace WPFSharpener
+namespace PrettyNSharp
 {
     /// <summary>
     /// Interaction logic for SharpButton.xaml

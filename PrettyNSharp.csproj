@@ -7,8 +7,8 @@
     <ProjectGuid>{4737A681-D0CB-4871-8D6F-CFFAFAD9B073}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPFSharpener</RootNamespace>
-    <AssemblyName>WPFSharpener</AssemblyName>
+    <RootNamespace>PrettyNSharp</RootNamespace>
+    <AssemblyName>PrettyNSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

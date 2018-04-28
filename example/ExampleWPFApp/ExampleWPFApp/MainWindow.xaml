@@ -1,11 +1,11 @@
-﻿<Window x:Class="SharpenerExample.MainWindow"
+﻿<Window x:Class="ExampleWPFApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SharpenerExample"
+        xmlns:local="clr-namespace:ExampleWPFApp"
         mc:Ignorable="d"
-        xmlns:sharpen="clr-namespace:WPFSharpener;assembly=WPFSharpener"
+        xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"
         Title="MainWindow" Height="350" Width="525">
    <Window.Resources>
         <ResourceDictionary>
@@ -26,15 +26,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <sharpen:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}" VectorBrush="Black"/>
-        <sharpen:SharpButton Margin="5" Grid.Column="1" Vector="{StaticResource PrettyNSharp}" VectorSize="Auto,50%"
+        <pns:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}" VectorBrush="Black"/>
+        <pns:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}" VectorBrush="Black"/>
+        <pns:SharpButton Margin="5" Grid.Column="1" Vector="{StaticResource PrettyNSharp}" VectorSize="Auto,50%"
                              Background="White" BackgroundOnHover="#007ACC" BackgroundOnClick="#49B3F9"
                              VectorBrush="Black" HighlightBrush="White"/>
-        <sharpen:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Star}" VectorSize="Auto,50%"/>
-        <sharpen:SharpButton Margin="5" Grid.Column="3" Vector="{StaticResource Cross}" VectorSize="Auto,50%"
+        <pns:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Star}" VectorSize="Auto,50%"/>
+        <pns:SharpButton Margin="5" Grid.Column="3" Vector="{StaticResource Cross}" VectorSize="Auto,50%"
                              BackgroundOnHover="#E83140" HighlightBrush="White" BorderBrush="Transparent"/>
-        <sharpen:SharpCheckbox Margin="5" Content="Click Me" Grid.Column="4"/>
-        <sharpen:SharpDisplay Margin="5" VectorBrush="#1BD741" Grid.Row="1" Grid.ColumnSpan="2" Vector="{StaticResource PrettyNSharp}"/>
+        <pns:SharpCheckbox Margin="5" Content="Click Me" Grid.Column="4"/>
+        <pns:SharpDisplay Margin="5" VectorBrush="#1BD741" Grid.Row="1" Grid.ColumnSpan="2" Vector="{StaticResource PrettyNSharp}"/>
 
     </Grid>
 </Window>

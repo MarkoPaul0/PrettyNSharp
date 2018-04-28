@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SharpenerExample.Properties
+namespace ExampleWPFApp.Properties
 {
 
 

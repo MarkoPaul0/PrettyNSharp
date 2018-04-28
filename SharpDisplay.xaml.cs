@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFSharpener
+namespace PrettyNSharp
 {
     /// <summary>
     /// Interaction logic for SharpDisplay.xaml
