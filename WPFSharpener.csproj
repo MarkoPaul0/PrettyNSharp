@@ -51,12 +51,19 @@
     <Compile Include="SharpButton.xaml.cs">
       <DependentUpon>SharpButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SharpCheckbox.xaml.cs">
+      <DependentUpon>SharpCheckbox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SharpDisplay.xaml.cs">
       <DependentUpon>SharpDisplay.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="SharpButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SharpCheckbox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

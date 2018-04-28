@@ -29,6 +29,6 @@
         <sharpen:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Cross}" VectorSize="Auto,50%"/>
         <sharpen:SharpButton Margin="5" Grid.Column="3" Vector="{StaticResource Cross}" VectorSize="Auto,50%"
                              BackgroundOnHover="#E83140" HighlightBrush="White" BorderBrush="Transparent"/>
-        <Button Margin="5" Content="Click Me" Grid.Column="4"/>
+        <sharpen:SharpCheckbox Margin="5" Content="Click Me" Grid.Column="4"/>
     </Grid>
 </Window>
