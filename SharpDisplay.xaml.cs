@@ -32,14 +32,6 @@ namespace WPFSharpener
         public static readonly DependencyProperty VectorBrushProperty =
             DependencyProperty.Register("VectorBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
-        public Brush HighlightBrush { get { return (Brush)GetValue(HighlightBrushProperty); } set { SetValue(HighlightBrushProperty, value); } }
-        public static readonly DependencyProperty HighlightBrushProperty =
-            DependencyProperty.Register("HighlightBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(null));
-
-        public Brush BackgroundOnHover { get { return (Brush)GetValue(BackgroundOnHoverProperty); } set { SetValue(BackgroundOnHoverProperty, value); } }
-        public static readonly DependencyProperty BackgroundOnHoverProperty =
-            DependencyProperty.Register("BackgroundOnHover", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(null));
-
         public AdvancedSize VectorSize { get { return (AdvancedSize)GetValue(VectorSizeProperty); } set { SetValue(VectorSizeProperty, value); } }
         public static readonly DependencyProperty VectorSizeProperty =
             DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpDisplay), new PropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
@@ -120,15 +112,7 @@ namespace WPFSharpener
             {
                 if (this.Vector == null)
                 {
-                    this.Vector = Constants.DEFAULT_PATH;
-                }
-                if (this.HighlightBrush == null)
-                {
-                    this.HighlightBrush = this.VectorBrush;
-                }
-                if (this.BackgroundOnHover == null)
-                {
-                    this.BackgroundOnHover = this.Background ?? new SolidColorBrush(Colors.Transparent);
+                    //TODO: set a default vector
                 }
                 updateVectorSize(this, this.VectorSize);
             };

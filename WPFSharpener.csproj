@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="AdvancedLength.cs" />
     <Compile Include="AdvancedSize.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharpButton.xaml.cs">
       <DependentUpon>SharpButton.xaml</DependentUpon>

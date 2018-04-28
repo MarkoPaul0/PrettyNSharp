@@ -113,7 +113,7 @@ namespace WPFSharpener
             {
                 if (this.Vector == null)
                 {
-                    this.Vector = Constants.DEFAULT_PATH;
+                    //TODO: set a default vector
                 }
                 if (this.HighlightBrush == null)
                 {

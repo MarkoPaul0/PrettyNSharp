@@ -3,20 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WPFSharpener"
              mc:Ignorable="d" 
              x:Name="SBControl"
              d:DesignHeight="300" d:DesignWidth="300">
+    <Button.Resources>
+        <ResourceDictionary>
+            <PathGeometry x:Key="DEFAULT_VECTOR">
+                M0,24l4,4l10-10l10,10l4-4L18,14L28,4l-4-4L14,10L4,0L0,4l10,10L0,24z
+            </PathGeometry>
+        </ResourceDictionary>
+    </Button.Resources>
     <Button.Template>
         <ControlTemplate TargetType="{x:Type Button}">
-            <Border x:Name="main_border" BorderBrush="{Binding ElementName=SBControl, Path=BorderBrush}"
-                            BorderThickness="{Binding ElementName=SBControl, Path=BorderThickness}"
-                            Background="{Binding ElementName=SBControl, Path=Background}">
-                <Path x:Name="vector" Stretch="{Binding ElementName=SBControl, Path=Stretch}" 
-                          Data="{Binding ElementName=SBControl, Path=Vector.Data}" 
-                          Fill="{Binding ElementName=SBControl, Path=VectorBrush}"
-                          Width="{Binding ElementName=SBControl, Path=ActualVectorWidth}"
-                          Height="{Binding ElementName=SBControl, Path=ActualVectorHeight}"/>
+            <Border x:Name="main_border" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                <Path x:Name="vector" Stretch="{Binding ElementName=SBControl, Path=Stretch, FallbackValue=Uniform}" 
+                          Data="{Binding ElementName=SBControl, Path=Vector.Path, FallbackValue={StaticResource DEFAULT_VECTOR}}" 
+                          Fill="{Binding ElementName=SBControl, Path=VectorBrush, FallbackValue=Black}"
+                          Width="{Binding ElementName=SBControl, Path=ActualVectorWidth, FallbackValue=100}"
+                          Height="{Binding ElementName=SBControl, Path=ActualVectorHeight}">
+                </Path>
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
