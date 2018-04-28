@@ -16,7 +16,8 @@ namespace WPFSharpener
 
         public AdvancedSize()
         {
-
+            this._Height = new AdvancedLength();
+            this._Width = new AdvancedLength();
         }
 
         public AdvancedSize(AdvancedLength width, AdvancedLength height)
