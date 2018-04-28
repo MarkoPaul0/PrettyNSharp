@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFSharpener"
              mc:Ignorable="d" 
              x:Name="SBControl"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -11,13 +12,22 @@
             <PathGeometry x:Key="DEFAULT_VECTOR">
                 M0,24l4,4l10-10l10,10l4-4L18,14L28,4l-4-4L14,10L4,0L0,4l10,10L0,24z
             </PathGeometry>
+            <Style TargetType="{x:Type local:SharpButton}">
+                <Setter Property="VectorBrush" Value="Black"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BackgroundOnHover" Value="#007ACC"/>
+                <Setter Property="BackgroundOnClick" Value="#49B3F9"/>
+                <Setter Property="HighlightBrush" Value="White"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+            </Style>
         </ResourceDictionary>
     </Button.Resources>
     <Button.Template>
         <ControlTemplate TargetType="{x:Type Button}">
             <Border x:Name="main_border" BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}">
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
                 <Path x:Name="vector" Stretch="{Binding ElementName=SBControl, Path=Stretch, FallbackValue=Uniform}" 
                           Data="{Binding ElementName=SBControl, Path=Vector.Path, FallbackValue={StaticResource DEFAULT_VECTOR}}" 
                           Fill="{Binding ElementName=SBControl, Path=VectorBrush, FallbackValue=Black}"

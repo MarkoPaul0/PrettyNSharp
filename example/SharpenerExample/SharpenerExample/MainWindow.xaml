@@ -20,13 +20,15 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <sharpen:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}" VectorBrush="Black" Background="LightGray" 
-                              VectorSize="50%"/>
+        <sharpen:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}"/>
         <sharpen:SharpButton Margin="5" Grid.Column="1" Vector="{StaticResource Cross}" VectorSize="Auto,50%"
                              Background="White" BackgroundOnHover="#007ACC" BackgroundOnClick="#49B3F9"
                              VectorBrush="Black" HighlightBrush="White"/>
         <sharpen:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Cross}" VectorSize="Auto,50%"/>
-        <Button Margin="5" Content="Click Me" Grid.Column="3"/>
+        <sharpen:SharpButton Margin="5" Grid.Column="3" Vector="{StaticResource Cross}" VectorSize="Auto,50%"
+                             BackgroundOnHover="#E83140" HighlightBrush="White" BorderBrush="Transparent"/>
+        <Button Margin="5" Content="Click Me" Grid.Column="4"/>
     </Grid>
 </Window>
