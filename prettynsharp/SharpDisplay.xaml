@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:PrettyNSharp"
              mc:Ignorable="d"
              x:Name="SDControl"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="150" d:DesignWidth="150">
     <UserControl.Resources>
+        <PathGeometry x:Key="MISSING_VECTOR">
+            M 127.10533,89.336006 91.749952,124.69138 56.39458,89.336008 42.252577,103.47801 l 35.355373,35.35537 -35.355373,35.35538 14.142005,14.142 35.355372,-35.35537 35.355376,35.35537 14.142,-14.142 -35.35537,-35.35537 35.35537,-35.35538 z
+        </PathGeometry>
         <Style TargetType="{x:Type local:SharpDisplay}">
             <Setter Property="VectorBrush" Value="Black"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -17,9 +20,9 @@
         <ControlTemplate TargetType="{x:Type UserControl}">
             <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
                 Background="{TemplateBinding Background}">
-                <Path Stretch="{Binding ElementName=SDControl, Path=VectorStretch}" 
-                      Data="{Binding ElementName=SDControl, Path=Vector.Data}" 
-                      Fill="{Binding ElementName=SDControl, Path=VectorBrush}"
+                <Path Stretch="{Binding ElementName=SDControl, Path=VectorStretch, FallbackValue=Uniform}" 
+                      Data="{Binding ElementName=SDControl, Path=Vector.Data, FallbackValue={StaticResource MISSING_VECTOR}}" 
+                      Fill="{Binding ElementName=SDControl, Path=VectorBrush, FallbackValue=#ACACAC}"
                       Width="{Binding ElementName=SDControl, Path=ActualVectorWidth}"
                       Height="{Binding ElementName=SDControl, Path=ActualVectorHeight}"/>
             </Border>

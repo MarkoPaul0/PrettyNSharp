@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:ExampleWPFApp"
         mc:Ignorable="d"
         xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"
-        Title="PrettyNSharp Example" Height="110" Width="700">
+        Title="PrettyNSharp Example" Height="300" Width="700">
     <Border Background="LightGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0,1" Background="LightGray">
@@ -35,7 +36,7 @@
                              Content="Close" ContentDisplay="{Binding Path=DisplayType}"/>
                 </Grid>
             </Border>
-            <pns:SharpButton Height="30" Grid.Row="2" Content="Switch Display Type" ContentDisplay="ContentOnly" Click="SharpButton_Click" Grid.ColumnSpan="5" Margin="20,5"/>
+            <pns:SharpButton Height="30" Grid.Row="1" Content="Switch Display Type" ContentDisplay="ContentOnly" Click="SharpButton_Click" Grid.ColumnSpan="5" Margin="20,5"/>
         </Grid>
     </Border>
 
