@@ -7,13 +7,6 @@
         mc:Ignorable="d"
         xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"
         Title="MainWindow" Height="350" Width="525">
-   <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SVGDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -28,7 +21,7 @@
         </Grid.RowDefinitions>
         <pns:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}" VectorBrush="Black"/>
         <pns:SharpDisplay Grid.Column="0" Vector="{StaticResource Cross}" VectorBrush="Black"/>
-        <pns:SharpButton Margin="5" Grid.Column="1" Vector="{StaticResource PrettyNSharp}" VectorSize="Auto,50%"
+        <pns:SharpButton Margin="5" Grid.Column="1" Vector="{StaticResource Gear}" VectorSize="Auto,50%"
                              Background="White" BackgroundOnHover="#007ACC" BackgroundOnClick="#49B3F9"
                              VectorBrush="Black" HighlightBrush="White"/>
         <pns:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Star}" VectorSize="Auto,20"
