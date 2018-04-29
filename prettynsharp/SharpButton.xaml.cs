@@ -28,41 +28,48 @@ namespace PrettyNSharp
         #endregion
 
         #region Dependency Properties
+        // SVG icon displayed in the SharpButton
         public Path Vector { get { return (Path)GetValue(VectorProperty); } set { SetValue(VectorProperty, value); } }
         public static readonly DependencyProperty VectorProperty =
             DependencyProperty.Register("Vector", typeof(Path), typeof(SharpButton), new PropertyMetadata(null));
 
-        public Brush VectorBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
-        public static readonly DependencyProperty VectorBrushProperty =
-            DependencyProperty.Register("VectorBrush", typeof(Brush), typeof(SharpButton), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
-
-        public Brush HighlightBrush { get { return (Brush)GetValue(HighlightBrushProperty); } set { SetValue(HighlightBrushProperty, value); } }
-        public static readonly DependencyProperty HighlightBrushProperty =
-            DependencyProperty.Register("HighlightBrush", typeof(Brush), typeof(SharpButton), new PropertyMetadata(null));
-
-        public Brush BackgroundOnHover { get { return (Brush)GetValue(BackgroundOnHoverProperty); } set { SetValue(BackgroundOnHoverProperty, value); } }
-        public static readonly DependencyProperty BackgroundOnHoverProperty =
-            DependencyProperty.Register("BackgroundOnHover", typeof(Brush), typeof(SharpButton), new PropertyMetadata(null));
-
-        public Brush BackgroundOnClick { get { return (Brush)GetValue(BackgroundOnClickProperty); } set { SetValue(BackgroundOnClickProperty, value); } }
-        public static readonly DependencyProperty BackgroundOnClickProperty =
-            DependencyProperty.Register("BackgroundOnClick", typeof(Brush), typeof(SharpButton), new PropertyMetadata(null));
-
+        // Size of the Vector displayed in the sharp button
         public AdvancedSize VectorSize { get { return (AdvancedSize)GetValue(VectorSizeProperty); } set { SetValue(VectorSizeProperty, value); } }
         public static readonly DependencyProperty VectorSizeProperty =
             DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpButton), new PropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
 
+        // Fill color of the Vector
+        public Brush VectorBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
+        public static readonly DependencyProperty VectorBrushProperty =
+            DependencyProperty.Register("VectorBrush", typeof(Brush), typeof(SharpButton), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+
+        // Fill color of the Vector when mouse is over the SharpButton
+        public Brush HighlightBrush { get { return (Brush)GetValue(HighlightBrushProperty); } set { SetValue(HighlightBrushProperty, value); } }
+        public static readonly DependencyProperty HighlightBrushProperty =
+            DependencyProperty.Register("HighlightBrush", typeof(Brush), typeof(SharpButton), new PropertyMetadata(null));
+
+        // SharpButton background when mouse is over
+        public Brush BackgroundOnHover { get { return (Brush)GetValue(BackgroundOnHoverProperty); } set { SetValue(BackgroundOnHoverProperty, value); } }
+        public static readonly DependencyProperty BackgroundOnHoverProperty =
+            DependencyProperty.Register("BackgroundOnHover", typeof(Brush), typeof(SharpButton), new PropertyMetadata(null));
+
+        // SharpButton background when clicked
+        public Brush BackgroundOnClick { get { return (Brush)GetValue(BackgroundOnClickProperty); } set { SetValue(BackgroundOnClickProperty, value); } }
+        public static readonly DependencyProperty BackgroundOnClickProperty =
+            DependencyProperty.Register("BackgroundOnClick", typeof(Brush), typeof(SharpButton), new PropertyMetadata(null));
+
+        // What is displayed by the SharpButton: The vector only, The Content only, or both
         public ContentDisplayType ContentDisplay { get { return (ContentDisplayType)GetValue(ContentDisplayProperty); } set { SetValue(ContentDisplayProperty, value); } }
         public static readonly DependencyProperty ContentDisplayProperty =
             DependencyProperty.Register("ContentDisplay", typeof(ContentDisplayType), typeof(SharpButton), new FrameworkPropertyMetadata(ContentDisplayType.IconOnly));
         #endregion
 
         #region GUI Properties
-        private Stretch _Stretch;
-        public Stretch Stretch
+        private Stretch _VectorStretch;
+        public Stretch VectorStretch
         {
-            get { return this._Stretch; }
-            set { if (!Object.Equals(value, this._Stretch)) { this._Stretch = value; this.RaisePropertyChanged(); } }
+            get { return this._VectorStretch; }
+            set { if (!Object.Equals(value, this._VectorStretch)) { this._VectorStretch = value; this.RaisePropertyChanged(); } }
         }
 
         private double _ActualVectorWidth;
@@ -80,6 +87,7 @@ namespace PrettyNSharp
         }
         #endregion
 
+        #region Constructor
         public SharpButton() : base()
         {
             InitializeComponent();
@@ -96,8 +104,10 @@ namespace PrettyNSharp
                 updateActualVectorSize(this, this.VectorSize);
             };
 
+            // If the SharpButton size has changed, the vector size need to be updated as well
             this.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorSize);
-        }
+        } 
+        #endregion
 
         #region Methods
         public override void OnApplyTemplate()
@@ -117,49 +127,48 @@ namespace PrettyNSharp
             this._PART_Content.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorSize);
         }
 
+        // Callback invoked when VectorSize changes
         private static void onVectorSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            SharpButton this_ = (SharpButton)d;
+            SharpButton self = (SharpButton)d;
             AdvancedSize new_size = (AdvancedSize)e.NewValue;
 
-            if (this_.IsLoaded)
+            if (self.IsLoaded)
             {
-                updateActualVectorSize(this_, new_size);
+                updateActualVectorSize(self, new_size);
             }
         }
 
-        private static void updateActualVectorSize(SharpButton this_, AdvancedSize new_size)
+        // Recompute the Vector's ActualWidth and ActualSize base on current size conditions
+        private static void updateActualVectorSize(SharpButton self, AdvancedSize new_size)
         {
-            this_.Stretch = Stretch.Fill;
+            self.VectorStretch = Stretch.Fill;
             if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
             {
-                this_.Stretch = Stretch.Uniform;
+                self.VectorStretch = Stretch.Uniform;
             }
 
-            this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
-            this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth - this_._PART_Content.ActualWidth);
+            self.ActualVectorHeight = self.computeActualVectorSize(new_size.Height, self.ActualHeight);
+            self.ActualVectorWidth = self.computeActualVectorSize(new_size.Width, self.ActualWidth - self._PART_Content.ActualWidth);
         }
 
+        // Compute an AdvancedLength base on current size conditions
         private double computeActualVectorSize(AdvancedLength len, double container_len)
         {
-            if (len.Unit == AdvancedLength.UnitType.Auto)
+            switch (len.Unit)
             {
-                return double.NaN; //value does not matter because stretch is set to uniform
+                case AdvancedLength.UnitType.Auto:
+                    return double.NaN; //In Auto mode, we set the Vector width (or length) to NaN and let the Vector.Strech = Uniform take care of the ActualWidth(or length)
+                case AdvancedLength.UnitType.Percent:
+                    return len.Value * container_len / 100;
+                case AdvancedLength.UnitType.Pixel:
+                    return len.Value;
+                case AdvancedLength.UnitType.Star:
+                    return container_len;
+                default:
+                    throw new InvalidEnumArgumentException("Unhandled value: " + len.Unit);
             }
-            else if (len.Unit == AdvancedLength.UnitType.Percent)
-            {
-                return len.Value * container_len / 100;
-            }
-            else if (len.Unit == AdvancedLength.UnitType.Pixel)
-            {
-                return len.Value;
-            }
-            else if (len.Unit == AdvancedLength.UnitType.Star)
-            {
-                return container_len;
-            }
-            throw new InvalidEnumArgumentException("Unknwon enum value: " + len.Unit);
-        } 
+        }
         #endregion
 
         #region INotifyPropertyChanged Implementation

@@ -59,25 +59,22 @@ namespace PrettyNSharp
             this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth);
         }
 
+        //This function should ONLY be invoked from updateVectorSize() (in  c# 7 this can be turned into a local function)
         private double computeActualVectorSize(AdvancedLength len, double container_len)
         {
-            if (len.Unit == AdvancedLength.UnitType.Auto)
+            switch (len.Unit)
             {
-                return container_len; //value does not matter because stretch is set to uniform
+                case AdvancedLength.UnitType.Auto:
+                    return double.NaN; //In Auto mode, we set the Vector width (or length) to NaN and let the Vector.Strech = Uniform take care of the ActualWidth(or length)
+                case AdvancedLength.UnitType.Percent:
+                    return len.Value * container_len / 100;
+                case AdvancedLength.UnitType.Pixel:
+                    return len.Value;
+                case AdvancedLength.UnitType.Star:
+                    return container_len;
+                default:
+                    throw new InvalidEnumArgumentException("Unhandled value: " + len.Unit);
             }
-            else if (len.Unit == AdvancedLength.UnitType.Percent)
-            {
-                return len.Value * container_len / 100;
-            }
-            else if (len.Unit == AdvancedLength.UnitType.Pixel)
-            {
-                return len.Value;
-            }
-            else if (len.Unit == AdvancedLength.UnitType.Star)
-            {
-                return container_len;
-            }
-            throw new InvalidEnumArgumentException("Unknwon enum value: " + len.Unit);
         }
         #endregion
 

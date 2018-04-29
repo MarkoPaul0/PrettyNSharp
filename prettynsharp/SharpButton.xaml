@@ -33,7 +33,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Path x:Name="PART_Vector" Grid.Column="0" Stretch="{Binding ElementName=SBControl, Path=Stretch, FallbackValue=Uniform}" 
+                    <Path x:Name="PART_Vector" Grid.Column="0" Stretch="{Binding ElementName=SBControl, Path=VectorStretch, FallbackValue=Uniform}" 
                           Data="{Binding ElementName=SBControl, Path=Vector.Data, FallbackValue={StaticResource DEFAULT_VECTOR}}" 
                           Fill="{Binding ElementName=SBControl, Path=VectorBrush, FallbackValue=Black}"
                           Width="{Binding ElementName=SBControl, Path=ActualVectorWidth}"
