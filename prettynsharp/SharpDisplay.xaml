@@ -4,21 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PrettyNSharp"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              x:Name="SDControl"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <Style TargetType="{x:Type local:SharpDisplay}">
             <Setter Property="VectorBrush" Value="Black"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
     </UserControl.Resources>
     <UserControl.Template>
-        <ControlTemplate TargetType="UserControl">
-            <Border Name="main_border" Background="{Binding ElementName=SDControl, Path=Background}"
-                    SnapsToDevicePixels="True">
-                <Path Name="vector" Stretch="{Binding ElementName=SDControl, Path=Stretch}" 
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                Background="{TemplateBinding Background}">
+                <Path Stretch="{Binding ElementName=SDControl, Path=VectorStretch}" 
                       Data="{Binding ElementName=SDControl, Path=Vector.Data}" 
                       Fill="{Binding ElementName=SDControl, Path=VectorBrush}"
                       Width="{Binding ElementName=SDControl, Path=ActualVectorWidth}"

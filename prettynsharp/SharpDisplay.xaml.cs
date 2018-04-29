@@ -22,20 +22,60 @@ namespace PrettyNSharp
     /// </summary>
     public partial class SharpDisplay : UserControl, INotifyPropertyChanged
     {
-
         #region Dependency Properties
+        // SVG design diplayed by SharpDisplay
         public Path Vector { get { return (Path)GetValue(VectorProperty); } set { SetValue(VectorProperty, value); } }
         public static readonly DependencyProperty VectorProperty =
             DependencyProperty.Register("Vector", typeof(Path), typeof(SharpDisplay), new PropertyMetadata(null));
 
-        public Brush VectorBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
-        public static readonly DependencyProperty VectorBrushProperty =
-            DependencyProperty.Register("VectorBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
-
+        //Size of the SVG design
         public AdvancedSize VectorSize { get { return (AdvancedSize)GetValue(VectorSizeProperty); } set { SetValue(VectorSizeProperty, value); } }
         public static readonly DependencyProperty VectorSizeProperty =
             DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpDisplay), new PropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
 
+        //Fill color of the SVG design
+        public Brush VectorBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
+        public static readonly DependencyProperty VectorBrushProperty =
+            DependencyProperty.Register("VectorBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+        #endregion
+
+        #region GUI Properties
+        private Stretch _VectorStretch;
+        public Stretch VectorStretch
+        {
+            get { return this._VectorStretch; }
+            set { if (!Object.Equals(value, this._VectorStretch)) { this._VectorStretch = value; this.RaisePropertyChanged(); } }
+        }
+
+        private double _ActualVectorWidth;
+        public double ActualVectorWidth
+        {
+            get { return this._ActualVectorWidth; }
+            set { if (!Object.Equals(value, this._ActualVectorWidth)) { this._ActualVectorWidth = value; this.RaisePropertyChanged(); } }
+        }
+
+        private double _ActualVectorHeight;
+        public double ActualVectorHeight
+        {
+            get { return this._ActualVectorHeight; }
+            set { if (!Object.Equals(value, this._ActualVectorHeight)) { this._ActualVectorHeight = value; this.RaisePropertyChanged(); } }
+        }
+        #endregion
+
+        #region Constructor
+        public SharpDisplay()
+        {
+            InitializeComponent();
+            this.Loaded += (sender, args) =>
+            {
+                updateVectorSize(this, this.VectorSize);
+            };
+            
+            this.SizeChanged += (sender, args) => updateVectorSize(this, this.VectorSize);
+        } 
+        #endregion
+
+        #region Methods
         private static void onVectorSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             SharpDisplay this_ = (SharpDisplay)d;
@@ -49,10 +89,10 @@ namespace PrettyNSharp
 
         private static void updateVectorSize(SharpDisplay this_, AdvancedSize new_size)
         {
-            this_.Stretch = Stretch.Fill;
+            this_.VectorStretch = Stretch.Fill;
             if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
             {
-                this_.Stretch = Stretch.Uniform;
+                this_.VectorStretch = Stretch.Uniform;
             }
 
             this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
@@ -77,45 +117,6 @@ namespace PrettyNSharp
             }
         }
         #endregion
-
-        #region GUI Properties
-        private Stretch _Stretch;
-        public Stretch Stretch
-        {
-            get { return this._Stretch; }
-            set { if (!Object.Equals(value, this._Stretch)) { this._Stretch = value; this.RaisePropertyChanged(); } }
-        }
-
-        private double _ActualVectorWidth;
-        public double ActualVectorWidth
-        {
-            get { return this._ActualVectorWidth; }
-            set { if (!Object.Equals(value, this._ActualVectorWidth)) { this._ActualVectorWidth = value; this.RaisePropertyChanged(); } }
-        }
-
-        private double _ActualVectorHeight;
-        public double ActualVectorHeight
-        {
-            get { return this._ActualVectorHeight; }
-            set { if (!Object.Equals(value, this._ActualVectorHeight)) { this._ActualVectorHeight = value; this.RaisePropertyChanged(); } }
-        }
-        #endregion
-
-
-        public SharpDisplay()
-        {
-            InitializeComponent();
-            this.Loaded += (sender, args) =>
-            {
-                if (this.Vector == null)
-                {
-                    //TODO: set a default vector
-                }
-                updateVectorSize(this, this.VectorSize);
-            };
-
-            this.SizeChanged += (sender, args) => updateVectorSize(this, this.VectorSize);
-        }
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
