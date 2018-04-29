@@ -31,11 +31,14 @@
         <pns:SharpButton Margin="5" Grid.Column="1" Vector="{StaticResource PrettyNSharp}" VectorSize="Auto,50%"
                              Background="White" BackgroundOnHover="#007ACC" BackgroundOnClick="#49B3F9"
                              VectorBrush="Black" HighlightBrush="White"/>
-        <pns:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Star}" VectorSize="Auto,50%"/>
+        <pns:SharpButton Margin="5" Grid.Column="2" Vector="{StaticResource Star}" VectorSize="Auto,20"
+                         Content="Star" ContentDisplay="{Binding Path=DisplayType}"/>
         <pns:SharpButton Margin="5" Grid.Column="3" Vector="{StaticResource Cross}" VectorSize="Auto,50%"
                              BackgroundOnHover="#E83140" HighlightBrush="White" BorderBrush="Transparent"/>
         <pns:SharpCheckbox Margin="5" Content="Click Me" Grid.Column="4"/>
         <pns:SharpDisplay Margin="5" VectorBrush="#1BD741" Grid.Row="1" Grid.ColumnSpan="2" Vector="{StaticResource PrettyNSharp}"/>
+        <pns:SharpButton Margin="5" Grid.Column="3" Grid.Row="2" Content="Display Type" ContentDisplay="ContentOnly"
+                         Click="SharpButton_Click"/>
 
     </Grid>
 </Window>

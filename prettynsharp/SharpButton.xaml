@@ -24,28 +24,67 @@
     </Button.Resources>
     <Button.Template>
         <ControlTemplate TargetType="{x:Type Button}">
-            <Border x:Name="main_border" BorderBrush="{TemplateBinding BorderBrush}"
+            <Border x:Name="PART_Border" BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
                             SnapsToDevicePixels="True">
-                <Path x:Name="vector" Stretch="{Binding ElementName=SBControl, Path=Stretch, FallbackValue=Uniform}" 
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Path x:Name="PART_Vector" Grid.Column="0" Stretch="{Binding ElementName=SBControl, Path=Stretch, FallbackValue=Uniform}" 
                           Data="{Binding ElementName=SBControl, Path=Vector.Data, FallbackValue={StaticResource DEFAULT_VECTOR}}" 
                           Fill="{Binding ElementName=SBControl, Path=VectorBrush, FallbackValue=Black}"
-                          Width="{Binding ElementName=SBControl, Path=ActualVectorWidth, FallbackValue=100}"
+                          Width="{Binding ElementName=SBControl, Path=ActualVectorWidth}"
                           Height="{Binding ElementName=SBControl, Path=ActualVectorHeight}">
-                </Path>
+                        <Path.Style>
+                            <Style TargetType="{x:Type Path}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=SBControl, Path=ContentDisplay}" Value="ContentOnly">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Style>
+                    </Path>
+                    <ContentPresenter x:Name="PART_Content" Grid.Column="1"
+                                      Margin="{Binding ElementName=SBControl, Path=ContentMargin}"
+                                      MaxWidth="{Binding ElementName=PART_Border, Path=ActualWidth}">
+                        <ContentPresenter.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="4,0,0,0"/>
+                                <Setter Property="Foreground" Value="{Binding ElementName=PART_Vector, Path=Fill}"/>
+                                <Setter Property="HorizontalAlignment" Value="{Binding ElementName=SBControl, Path=HorizontalContentAlignment}"/>
+                                <Setter Property="VerticalAlignment" Value="{Binding ElementName=SBControl, Path=VerticalContentAlignment}"/>
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            </Style>
+                        </ContentPresenter.Resources>
+                        <ContentPresenter.Style>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=SBControl, Path=ContentDisplay}" Value="IconOnly">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentPresenter.Style>
+                    </ContentPresenter>
+                </Grid>
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="main_border" Property="Background" Value="{Binding ElementName=SBControl, Path=BackgroundOnHover}"/>
-                    <Setter TargetName="vector" Property="Fill" Value="{Binding ElementName=SBControl, Path=HighlightBrush}"/>
+                    <Setter TargetName="PART_Border" Property="Background" Value="{Binding ElementName=SBControl, Path=BackgroundOnHover}"/>
+                    <Setter TargetName="PART_Vector" Property="Fill" Value="{Binding ElementName=SBControl, Path=HighlightBrush}"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter TargetName="main_border" Property="Background" Value="{Binding ElementName=SBControl, Path=BackgroundOnClick}"/>
-                    <Setter TargetName="vector" Property="Fill" Value="{Binding ElementName=SBControl, Path=HighlightBrush}"/>
+                    <Setter TargetName="PART_Border" Property="Background" Value="{Binding ElementName=SBControl, Path=BackgroundOnClick}"/>
+                    <Setter TargetName="PART_Vector" Property="Fill" Value="{Binding ElementName=SBControl, Path=HighlightBrush}"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
-                    <Setter TargetName="vector" Property="Fill" Value="Gray"/>
+                    <Setter TargetName="PART_Vector" Property="Fill" Value="Gray"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

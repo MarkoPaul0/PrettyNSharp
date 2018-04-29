@@ -8,11 +8,25 @@ using System.Windows.Shapes;
 
 namespace PrettyNSharp
 {
+    public enum ContentDisplayType
+    {
+        IconOnly,
+        ContentOnly,
+        Both
+    }
+
     /// <summary>
     /// Interaction logic for SharpButton.xaml
     /// </summary>
+    [TemplatePart(Name = "PART_Vector", Type = typeof(Path))]
+    [TemplatePart(Name = "PART_Content", Type = typeof(ContentPresenter))]
     public partial class SharpButton : Button, INotifyPropertyChanged
     {
+        #region Members
+        private Path _PART_Vector;
+        private ContentPresenter _PART_Content;
+        #endregion
+
         #region Dependency Properties
         public Path Vector { get { return (Path)GetValue(VectorProperty); } set { SetValue(VectorProperty, value); } }
         public static readonly DependencyProperty VectorProperty =
@@ -38,49 +52,9 @@ namespace PrettyNSharp
         public static readonly DependencyProperty VectorSizeProperty =
             DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpButton), new PropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
 
-        private static void onVectorSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            SharpButton this_ = (SharpButton)d;
-            AdvancedSize new_size = (AdvancedSize)e.NewValue;
-
-            if (this_.IsLoaded)
-            {
-                updateVectorSize(this_, new_size);
-            }
-        }
-
-        private static void updateVectorSize(SharpButton this_, AdvancedSize new_size)
-        {
-            this_.Stretch = Stretch.Fill;
-            if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
-            {
-                this_.Stretch = Stretch.Uniform;
-            }
-
-            this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
-            this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth);
-        }
-
-        private double computeActualVectorSize(AdvancedLength len, double container_len)
-        {
-            if (len.Unit == AdvancedLength.UnitType.Auto)
-            {
-                return container_len; //value does not matter because stretch is set to uniform
-            }
-            else if (len.Unit == AdvancedLength.UnitType.Percent)
-            {
-                return len.Value * container_len / 100;
-            }
-            else if (len.Unit == AdvancedLength.UnitType.Pixel)
-            {
-                return len.Value;
-            }
-            else if (len.Unit == AdvancedLength.UnitType.Star)
-            {
-                return container_len;
-            }
-            throw new InvalidEnumArgumentException("Unknwon enum value: " + len.Unit);
-        }
+        public ContentDisplayType ContentDisplay { get { return (ContentDisplayType)GetValue(ContentDisplayProperty); } set { SetValue(ContentDisplayProperty, value); } }
+        public static readonly DependencyProperty ContentDisplayProperty =
+            DependencyProperty.Register("ContentDisplay", typeof(ContentDisplayType), typeof(SharpButton), new FrameworkPropertyMetadata(default(ContentDisplayType)));
         #endregion
 
         #region GUI Properties
@@ -106,15 +80,11 @@ namespace PrettyNSharp
         }
         #endregion
 
-        public SharpButton()
+        public SharpButton() : base()
         {
             InitializeComponent();
             this.Loaded += (sender, args) =>
             {
-                if (this.Vector == null)
-                {
-                    //TODO: set a default vector
-                }
                 if (this.HighlightBrush == null)
                 {
                     this.HighlightBrush = this.VectorBrush;
@@ -123,11 +93,74 @@ namespace PrettyNSharp
                 {
                     this.BackgroundOnHover = this.Background ?? new SolidColorBrush(Colors.Transparent);
                 }
-                updateVectorSize(this, this.VectorSize);
+                updateActualVectorSize(this, this.VectorSize);
             };
 
-            this.SizeChanged += (sender, args) => updateVectorSize(this, this.VectorSize);
+            this.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorSize);
         }
+
+        #region Methods
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            this._PART_Vector = this.GetTemplateChild("PART_Vector") as Path;
+            this._PART_Content = this.GetTemplateChild("PART_Content") as ContentPresenter;
+            if (this._PART_Vector == null)
+            {
+                throw new Exception("Could not get template child 'PART_Vector' from " + this.GetType() + "!");
+            }
+            if (this._PART_Content == null)
+            {
+                throw new Exception("Could not get template child 'PART_Content' from " + this.GetType() + "!");
+            }
+            updateActualVectorSize(this, this.VectorSize);
+            this._PART_Content.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorSize);
+        }
+
+        private static void onVectorSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            SharpButton this_ = (SharpButton)d;
+            AdvancedSize new_size = (AdvancedSize)e.NewValue;
+
+            if (this_.IsLoaded)
+            {
+                updateActualVectorSize(this_, new_size);
+            }
+        }
+
+        private static void updateActualVectorSize(SharpButton this_, AdvancedSize new_size)
+        {
+            this_.Stretch = Stretch.Fill;
+            if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
+            {
+                this_.Stretch = Stretch.Uniform;
+            }
+
+            this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
+            this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth - this_._PART_Content.ActualWidth);
+        }
+
+        private double computeActualVectorSize(AdvancedLength len, double container_len)
+        {
+            if (len.Unit == AdvancedLength.UnitType.Auto)
+            {
+                return double.NaN; //value does not matter because stretch is set to uniform
+            }
+            else if (len.Unit == AdvancedLength.UnitType.Percent)
+            {
+                return len.Value * container_len / 100;
+            }
+            else if (len.Unit == AdvancedLength.UnitType.Pixel)
+            {
+                return len.Value;
+            }
+            else if (len.Unit == AdvancedLength.UnitType.Star)
+            {
+                return container_len;
+            }
+            throw new InvalidEnumArgumentException("Unknwon enum value: " + len.Unit);
+        } 
+        #endregion
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
