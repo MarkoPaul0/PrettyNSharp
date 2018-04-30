@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PrettyNSharp"
              mc:Ignorable="d" 
-             x:Name="SCControl"
+             x:Name="SCControl" MinHeight="13" MinWidth="13"
              d:DesignHeight="150" d:DesignWidth="150">
     <CheckBox.Resources>
         <ResourceDictionary>
@@ -15,23 +15,23 @@
             <RectangleGeometry x:Key="DEFAULT_NULLMARK_GEOM" Rect="0,0,20,20"/>
             <Path x:Key="DEFAULT_CHECKMARK" Data="{StaticResource DEFAULT_CHECKMARK_GEOM}"/>
             <Style TargetType="{x:Type local:SharpCheckbox}">
-                <Setter Property="Width" Value="20"/>
-                <Setter Property="Height" Value="20"/>
                 <Setter Property="Checkmark" Value="{StaticResource DEFAULT_CHECKMARK}"/>
                 <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Height" Value="14"/>
                 <Setter Property="BorderBrush" Value="#777777"/>
-                <Setter Property="BorderOnHover" Value="Red"/>
+                <Setter Property="BorderOnHover" Value="#49B3F9"/>
                 <Setter Property="MarkMargin" Value="1"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
             </Style>
         </ResourceDictionary>
     </CheckBox.Resources>
     <CheckBox.Template>
         <ControlTemplate TargetType="CheckBox">
-            <BulletDecorator Background="Transparent" SnapsToDevicePixels="True">
+            <BulletDecorator Background="Transparent" SnapsToDevicePixels="True" VerticalAlignment="Center">
                 <BulletDecorator.Bullet>
-                    <Border x:Name="Border"
+                    <Border x:Name="Border" MinHeight="13" MinWidth="13"
                             Background="{TemplateBinding Background}"
-                            Width="{Binding ElementName=SCControl, Path=Width, FallbackValue=20}" 
+                            Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
                             Height="{Binding ElementName=SCControl, Path=Height, FallbackValue=20}"
                             CornerRadius="{Binding ElementName=SCControl, Path=CornerRadius, FallbackValue=0}"
                             BorderThickness="{Binding ElementName=SCControl, Path=BorderThickness, FallbackValue=1}"
@@ -46,7 +46,17 @@
                         </Grid>
                     </Border>
                 </BulletDecorator.Bullet>
-                <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                <ContentPresenter RecognizesAccessKey="True" VerticalAlignment="Stretch">
+                    <ContentPresenter.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="4,0,0,0"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="HorizontalAlignment" Value="{Binding ElementName=SCControl, Path=HorizontalContentAlignment, FallbackValue=Left}"/>
+                            <Setter Property="VerticalAlignment" Value="{Binding ElementName=SCControl, Path=VerticalContentAlignment, FallbackValue=Center}"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </ContentPresenter.Resources>
+                </ContentPresenter>
             </BulletDecorator>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsChecked" Value="false">
