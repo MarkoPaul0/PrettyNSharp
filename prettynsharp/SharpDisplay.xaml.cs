@@ -36,7 +36,7 @@ namespace PrettyNSharp
         //Fill color of the SVG design
         public Brush VectorBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
         public static readonly DependencyProperty VectorBrushProperty =
-            DependencyProperty.Register("VectorBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+            DependencyProperty.Register("CheckmarkBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
         #endregion
 
         #region GUI Properties

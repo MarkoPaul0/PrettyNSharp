@@ -6,19 +6,22 @@
              xmlns:local="clr-namespace:PrettyNSharp"
              mc:Ignorable="d" 
              x:Name="SCControl"
-             IsChecked="{Binding Source={RelativeSource Self}, Path=IsChecked, FallbackValue={x:Null}}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="150" d:DesignWidth="150">
     <CheckBox.Resources>
         <ResourceDictionary>
             <PathGeometry x:Key="DEFAULT_CHECKMARK_GEOM">
-                M0,24l4,4l10-10l10,10l4-4L18,14L28,4l-4-4L14,10L4,0L0,4l10,10L0,24z
+                m 24.87906,133.61014 54.011684,45.32148 1.059053,-1.51247 L 90.406331,162.48567 141.19098,89.957682 124.80809,78.486256 75.027066,149.58093 37.734728,118.28926 Z
             </PathGeometry>
+            <RectangleGeometry x:Key="DEFAULT_NULLMARK_GEOM" Rect="0,0,20,20"/>
             <Path x:Key="DEFAULT_CHECKMARK" Data="{StaticResource DEFAULT_CHECKMARK_GEOM}"/>
-
             <Style TargetType="{x:Type local:SharpCheckbox}">
-                <Setter Property="Width" Value="52"/>
-                <Setter Property="Height" Value="52"/>
-                <Setter Property="Vector" Value="{StaticResource DEFAULT_CHECKMARK}"/>
+                <Setter Property="Width" Value="20"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Checkmark" Value="{StaticResource DEFAULT_CHECKMARK}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="#777777"/>
+                <Setter Property="BorderOnHover" Value="Red"/>
+                <Setter Property="MarkMargin" Value="1"/>
             </Style>
         </ResourceDictionary>
     </CheckBox.Resources>
@@ -26,20 +29,21 @@
         <ControlTemplate TargetType="CheckBox">
             <BulletDecorator Background="Transparent" SnapsToDevicePixels="True">
                 <BulletDecorator.Bullet>
-                    <Border x:Name="Border" Width="{Binding ElementName=SCControl, Path=Width, FallbackValue=13}" 
-                            Height="{Binding ElementName=SCControl, Path=Height, FallbackValue=13}"
-                            CornerRadius="26" 
+                    <Border x:Name="Border"
                             Background="{TemplateBinding Background}"
-                        BorderThickness="4"
-                        BorderBrush="Gray">
+                            Width="{Binding ElementName=SCControl, Path=Width, FallbackValue=20}" 
+                            Height="{Binding ElementName=SCControl, Path=Height, FallbackValue=20}"
+                            CornerRadius="{Binding ElementName=SCControl, Path=CornerRadius, FallbackValue=0}"
+                            BorderThickness="{Binding ElementName=SCControl, Path=BorderThickness, FallbackValue=1}"
+                            BorderBrush="{Binding ElementName=SCControl, Path=BorderBrush, FallbackValue=Black}">
                         <Grid>
-                            <Path x:Name="CheckMark" Margin="8"
-                              Fill="{Binding ElementName=SCControl, Path=VectorBrush, FallbackValue=Black}" Stretch="Uniform"
-                            Data="{Binding ElementName=SCControl, Path=Vector.Data, FallbackValue={StaticResource DEFAULT_CHECKMARK_GEOM}}" />
-                            <!-- TODO: make the NullMark a path -->
-                            <Border x:Name="NullMark" Visibility="Hidden" Background="Gray" Margin="4" CornerRadius="26"/>
+                            <Path x:Name="CheckMark" Margin="{Binding ElementName=SCControl, Path=MarkMargin, FallbackValue=2}"
+                                Fill="{Binding ElementName=SCControl, Path=MarkBrush, FallbackValue=Black}" Stretch="Uniform"
+                                Data="{Binding ElementName=SCControl, Path=Checkmark.Data, FallbackValue={StaticResource DEFAULT_CHECKMARK_GEOM}}" />
+                            <Path x:Name="NullMark" Visibility="Hidden" Margin="{Binding ElementName=SCControl, Path=MarkMargin, FallbackValue=2}"
+                                Fill="{Binding ElementName=SCControl, Path=MarkBrush, FallbackValue=Black}" Stretch="Uniform"
+                                Data="{Binding ElementName=SCControl, Path=Nullmark.Data, FallbackValue={StaticResource DEFAULT_NULLMARK_GEOM}}" />
                         </Grid>
-                        
                     </Border>
                 </BulletDecorator.Bullet>
                 <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
@@ -49,22 +53,19 @@
                     <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
                 </Trigger>
                 <Trigger Property="IsChecked" Value="{x:Null}">
-                    <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                    <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed" />
                     <Setter TargetName="NullMark" Property="Visibility" Value="Visible"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="true">
-                    <Setter TargetName="CheckMark" Property="Fill" Value="#007ACC" />
-                    <Setter TargetName="Border" Property="BorderBrush" Value="#007ACC" />
-                </Trigger>
-                <!--<Trigger Property="IsPressed" Value="true">
-                    <Setter TargetName="Border" Property="Background" Value="{StaticResource PressedBrush}" />
-                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PressedBorderBrush}" />
+                    <Setter TargetName="CheckMark" Property="Fill" Value="{Binding ElementName=SCControl, Path=MarkHighlight}" />
+                    <Setter TargetName="NullMark" Property="Fill" Value="{Binding ElementName=SCControl, Path=MarkHighlight}"/>
+                    <Setter TargetName="Border" Property="BorderBrush" Value="{Binding ElementName=SCControl, Path=BorderOnHover, FallbackValue=#007ACC}" />
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="false">
-                    <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
-                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
-                    <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
-                </Trigger>-->
+                    <Setter TargetName="Border" Property="BorderBrush" Value="Gray" />
+                    <Setter TargetName="CheckMark" Property="Fill" Value="Gray" />
+                    <Setter TargetName="NullMark" Property="Fill" Value="Gray" />
+                </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </CheckBox.Template>
