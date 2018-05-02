@@ -33,10 +33,15 @@ namespace PrettyNSharp
         public static readonly DependencyProperty VectorProperty =
             DependencyProperty.Register("Vector", typeof(Path), typeof(SharpButton), new PropertyMetadata(null));
 
-        // Size of the Vector displayed in the sharp button
-        public AdvancedSize VectorSize { get { return (AdvancedSize)GetValue(VectorSizeProperty); } set { SetValue(VectorSizeProperty, value); } }
-        public static readonly DependencyProperty VectorSizeProperty =
-            DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpButton), new PropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
+        //Width of the Vector displayed in the sharp button
+        public AdvancedLength VectorWidth { get { return (AdvancedLength)GetValue(VectorWidthProperty); } set { SetValue(VectorWidthProperty, value); } }
+        public static readonly DependencyProperty VectorWidthProperty =
+            DependencyProperty.Register("VectorWidth", typeof(AdvancedLength), typeof(SharpButton), new FrameworkPropertyMetadata(new AdvancedLength(), new PropertyChangedCallback(onVectorWidthChanged)));
+
+        // Height of the Vector displayed in the sharp button
+        public AdvancedLength VectorHeight { get { return (AdvancedLength)GetValue(VectorHeightProperty); } set { SetValue(VectorHeightProperty, value); } }
+        public static readonly DependencyProperty VectorHeightProperty =
+            DependencyProperty.Register("VectorHeight", typeof(AdvancedLength), typeof(SharpButton), new FrameworkPropertyMetadata(new AdvancedLength(), new PropertyChangedCallback(onVectorHeightChanged)));
 
         // Fill color of the Vector
         public Brush VectorBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
@@ -101,11 +106,11 @@ namespace PrettyNSharp
                 {
                     this.BackgroundOnHover = this.Background ?? new SolidColorBrush(Colors.Transparent);
                 }
-                updateActualVectorSize(this, this.VectorSize);
+                updateActualVectorSize(this, this.VectorWidth, this.VectorHeight);
             };
 
             // If the SharpButton size has changed, the vector size need to be updated as well
-            this.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorSize);
+            this.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorWidth, this.VectorHeight);
         } 
         #endregion
 
@@ -123,33 +128,45 @@ namespace PrettyNSharp
             {
                 throw new Exception("Could not get template child 'PART_Content' from " + this.GetType() + "!");
             }
-            updateActualVectorSize(this, this.VectorSize);
-            this._PART_Content.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorSize);
+            updateActualVectorSize(this, this.VectorWidth, this.VectorHeight);
+            this._PART_Content.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorWidth, this.VectorHeight);
         }
 
-        // Callback invoked when VectorSize changes
-        private static void onVectorSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        // Callback invoked when VectorWidth changes
+        private static void onVectorWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             SharpButton self = (SharpButton)d;
-            AdvancedSize new_size = (AdvancedSize)e.NewValue;
+            AdvancedLength new_width = (AdvancedLength)e.NewValue;
 
             if (self.IsLoaded)
             {
-                updateActualVectorSize(self, new_size);
+                updateActualVectorSize(self, new_width, self.VectorHeight);
+            }
+        }
+
+        // Callback invoked when VectorHeight changes
+        private static void onVectorHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            SharpButton self = (SharpButton)d;
+            AdvancedLength new_height = (AdvancedLength)e.NewValue;
+
+            if (self.IsLoaded)
+            {
+                updateActualVectorSize(self, self.VectorWidth, new_height);
             }
         }
 
         // Recompute the Vector's ActualWidth and ActualSize base on current size conditions
-        private static void updateActualVectorSize(SharpButton self, AdvancedSize new_size)
+        private static void updateActualVectorSize(SharpButton self, AdvancedLength new_width, AdvancedLength new_height)
         {
             self.VectorStretch = Stretch.Fill;
-            if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
+            if (new_width.Unit == AdvancedLength.UnitType.Auto || new_height.Unit == AdvancedLength.UnitType.Auto)
             {
                 self.VectorStretch = Stretch.Uniform;
             }
 
-            self.ActualVectorHeight = self.computeActualVectorSize(new_size.Height, self.ActualHeight);
-            self.ActualVectorWidth = self.computeActualVectorSize(new_size.Width, self.ActualWidth - self._PART_Content.ActualWidth);
+            self.ActualVectorHeight = self.computeActualVectorSize(new_height, self.ActualHeight);
+            self.ActualVectorWidth = self.computeActualVectorSize(new_width, self.ActualWidth - self._PART_Content.ActualWidth);
         }
 
         // Compute an AdvancedLength base on current size conditions

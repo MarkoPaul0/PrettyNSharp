@@ -28,15 +28,20 @@ namespace PrettyNSharp
         public static readonly DependencyProperty VectorProperty =
             DependencyProperty.Register("Vector", typeof(Path), typeof(SharpDisplay), new PropertyMetadata(null));
 
-        //Size of the SVG design
-        public AdvancedSize VectorSize { get { return (AdvancedSize)GetValue(VectorSizeProperty); } set { SetValue(VectorSizeProperty, value); } }
-        public static readonly DependencyProperty VectorSizeProperty =
-            DependencyProperty.Register("VectorSize", typeof(AdvancedSize), typeof(SharpDisplay), new PropertyMetadata(new AdvancedSize(), new PropertyChangedCallback(onVectorSizeChanged)));
+        //Width of the Vector displayed in the sharp button
+        public AdvancedLength VectorWidth { get { return (AdvancedLength)GetValue(VectorWidthProperty); } set { SetValue(VectorWidthProperty, value); } }
+        public static readonly DependencyProperty VectorWidthProperty =
+            DependencyProperty.Register("VectorWidth", typeof(AdvancedLength), typeof(SharpDisplay), new FrameworkPropertyMetadata(new AdvancedLength(), new PropertyChangedCallback(onVectorWidthChanged)));
+
+        // Height of the Vector displayed in the sharp button
+        public AdvancedLength VectorHeight { get { return (AdvancedLength)GetValue(VectorHeightProperty); } set { SetValue(VectorHeightProperty, value); } }
+        public static readonly DependencyProperty VectorHeightProperty =
+            DependencyProperty.Register("VectorHeight", typeof(AdvancedLength), typeof(SharpDisplay), new FrameworkPropertyMetadata(new AdvancedLength(), new PropertyChangedCallback(onVectorHeightChanged)));
 
         //Fill color of the SVG design
         public Brush VectorBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
         public static readonly DependencyProperty VectorBrushProperty =
-            DependencyProperty.Register("CheckmarkBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+            DependencyProperty.Register("VectorBrush", typeof(Brush), typeof(SharpDisplay), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
         #endregion
 
         #region GUI Properties
@@ -68,35 +73,49 @@ namespace PrettyNSharp
             InitializeComponent();
             this.Loaded += (sender, args) =>
             {
-                updateVectorSize(this, this.VectorSize);
+                updateActualVectorSize(this, this.VectorWidth, this.VectorHeight);
             };
             
-            this.SizeChanged += (sender, args) => updateVectorSize(this, this.VectorSize);
-        } 
+            this.SizeChanged += (sender, args) => updateActualVectorSize(this, this.VectorWidth, this.VectorHeight);
+        }
         #endregion
 
         #region Methods
-        private static void onVectorSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        // Callback invoked when VectorWidth changes
+        private static void onVectorWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            SharpDisplay this_ = (SharpDisplay)d;
-            AdvancedSize new_size = (AdvancedSize)e.NewValue;
+            SharpDisplay self = (SharpDisplay)d;
+            AdvancedLength new_width = (AdvancedLength)e.NewValue;
 
-            if (this_.IsLoaded)
+            if (self.IsLoaded)
             {
-                updateVectorSize(this_, new_size);
+                updateActualVectorSize(self, new_width, self.VectorHeight);
             }
         }
 
-        private static void updateVectorSize(SharpDisplay this_, AdvancedSize new_size)
+        // Callback invoked when VectorHeight changes
+        private static void onVectorHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            this_.VectorStretch = Stretch.Fill;
-            if (new_size.Height.Unit == AdvancedLength.UnitType.Auto || new_size.Width.Unit == AdvancedLength.UnitType.Auto)
+            SharpDisplay self = (SharpDisplay)d;
+            AdvancedLength new_height = (AdvancedLength)e.NewValue;
+
+            if (self.IsLoaded)
             {
-                this_.VectorStretch = Stretch.Uniform;
+                updateActualVectorSize(self, self.VectorWidth, new_height);
+            }
+        }
+
+        // Recompute the Vector's ActualWidth and ActualSize base on current size conditions
+        private static void updateActualVectorSize(SharpDisplay self, AdvancedLength new_width, AdvancedLength new_height)
+        {
+            self.VectorStretch = Stretch.Fill;
+            if (new_width.Unit == AdvancedLength.UnitType.Auto || new_height.Unit == AdvancedLength.UnitType.Auto)
+            {
+                self.VectorStretch = Stretch.Uniform;
             }
 
-            this_.ActualVectorHeight = this_.computeActualVectorSize(new_size.Height, this_.ActualHeight);
-            this_.ActualVectorWidth = this_.computeActualVectorSize(new_size.Width, this_.ActualWidth);
+            self.ActualVectorHeight = self.computeActualVectorSize(new_height, self.ActualHeight);
+            self.ActualVectorWidth = self.computeActualVectorSize(new_width, self.ActualWidth);
         }
 
         //This function should ONLY be invoked from updateVectorSize() (in  c# 7 this can be turned into a local function)
