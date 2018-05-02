@@ -45,31 +45,11 @@ namespace PrettyNSharp
             DependencyProperty.Register("BorderOnHover", typeof(Brush), typeof(SharpCheckbox), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
         #endregion
 
-        #region GUI Properties
-        private double _ActualVectorWidth;
-        public double ActualVectorWidth
-        {
-            get { return this._ActualVectorWidth; }
-            set { if (!Object.Equals(value, this._ActualVectorWidth)) { this._ActualVectorWidth = value; this.RaisePropertyChanged(); } }
-        }
-
-        private double _ActualVectorHeight;
-        public double ActualVectorHeight
-        {
-            get { return this._ActualVectorHeight; }
-            set { if (!Object.Equals(value, this._ActualVectorHeight)) { this._ActualVectorHeight = value; this.RaisePropertyChanged(); } }
-        }
-        #endregion
-
         public SharpCheckbox()
         {
             InitializeComponent();
             this.Loaded += (sender, args) =>
             {
-                if (this.Checkmark == null)
-                {
-                    //TODO: set a default vector
-                }
                 if (this.MarkHighlight == null)
                 {
                     this.MarkHighlight = this.MarkBrush;
