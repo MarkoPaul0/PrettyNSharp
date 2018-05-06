@@ -64,7 +64,7 @@ Of course you can also define a style matching the results shown above, allowing
 
 ### Example of PrettyNSharp checkbox
 
-Let's say you want your close button to look like this:
+Let's say you want your checkboxes to look like this:
 
 | ![](doc/radio_checkbox_demo.gif) |
 |:--:| 
