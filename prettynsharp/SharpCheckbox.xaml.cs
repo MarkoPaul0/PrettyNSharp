@@ -43,6 +43,11 @@ namespace PrettyNSharp
         public Brush BorderOnHover { get { return (Brush)GetValue(BorderOnHoverProperty); } set { SetValue(BorderOnHoverProperty, value); } }
         public static readonly DependencyProperty BorderOnHoverProperty =
             DependencyProperty.Register("BorderOnHover", typeof(Brush), typeof(SharpCheckbox), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+
+        // Corner radius of the checkbox border
+        public CornerRadius CornerRadius { get { return (CornerRadius)GetValue(CornerRadiusProperty); } set { SetValue(CornerRadiusProperty, value); } }
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(SharpCheckbox), new FrameworkPropertyMetadata(default(CornerRadius)));
         #endregion
 
         public SharpCheckbox()
