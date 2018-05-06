@@ -16,10 +16,10 @@ Create beautiful and scalable custom UI controls for your c#/WPF application. **
 * Run 
 
 ### To use PrettyNSharp in your own solution
-* Add [PrettyNSharp project file](prettynsharp/PrettyNSharp.csproj) to your solution
-* Add reference to PrettyNSharp to the project(s) which will use PrettyNSharp
+* Add the PrettyNSharp project file [PrettyNSharp.csproj](prettynsharp/PrettyNSharp.csproj) to your solution (c.f. [Add existing project to solution](https://docs.microsoft.com/en-us/sql/ssms/solution/add-an-existing-project-to-a-solution?view=sql-server-2017))
+* Add reference to PrettyNSharp to the project(s) in your solution which will use PrettyNSharp (c.f [Add project reference](https://msdn.microsoft.com/en-us/library/hh708954.aspx))
 * (Optional) If you want to use my SVG designs, add a reference to the PrettyNSharp [SVG Dictionary](prettynsharp/SVGLibrary.xaml) in your App.xaml.
-* You're ready to rock
+* You're ready to rock :thumbsup:
 
 ## Examples:
 ### Create a PrettyNSharp button, aka. SharpButton
