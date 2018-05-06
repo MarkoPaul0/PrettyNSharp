@@ -71,7 +71,7 @@ Let's say you want your checkboxes to look like this:
 | *[PrettyNSharp] A pretty checkbox* |
 
 I actually do not recommend that design because it looks like a radio button when it is unchecked (and it is not a radio button, since it is checkbox. *I know, this was hard to follow..*)
-In any case, the xaml achieving this *never-seen-before level of beautifulness* is as follows:
+In any case, the xaml achieving this *never-seen-before level of beauty* is as follows:
 
 ```xaml
 <pns:SharpCheckbox BorderThickness="4" Height="50" CornerRadius="25" MarkMargin="5"/>
@@ -92,5 +92,35 @@ As you can see, buttons can be switched between 3 types of "display type":
 * ContentOnly: only the content is displayed
 
 This is very cool (*or at least I decided so*) if you have an app with a lot of menus and buttons. Once you are familiar with that app you might be ok with Icons only, but for a while you might want to have a look at what they mean without having to wait for the tooltip to show up.
+
+This unparalleled level of refinement was achieved with the following xaml:
+
+```xaml
+<Grid >
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <pns:SharpButton Grid.Column="0" BorderThickness="0,0,1,0"
+                     Content="Search" Vector="{StaticResource Magnifier}" 
+                     VectorHeight="50%" ContentDisplay="{Binding DisplayType}"/>
+    <pns:SharpButton Grid.Column="1" BorderThickness="0,0,1,0"
+                     Content="Settings" Vector="{StaticResource Gear}" 
+                     VectorHeight="50%" ContentDisplay="{Binding DisplayType}"/>
+    <pns:SharpButton Grid.Column="2" BorderThickness="0,0,1,0" 
+                     Content="Starred!" Vector="{StaticResource Star}" 
+                     VectorHeight="50%" ContentDisplay="{Binding DisplayType}"/>
+    <pns:SharpButton Grid.Column="3" BorderThickness="0,0,1,0"
+                     Content="Messages" Vector="{StaticResource Mail}" 
+                     VectorHeight="50%" ContentDisplay="{Binding DisplayType}"/>
+    <pns:SharpButton Grid.Column="4" BorderThickness="0"
+                     Vector="{StaticResource Cross}" VectorHeight="50%" 
+                     BackgroundOnHover="#E83140" BackgroundOnClick="#E87E87" 
+                     Content="Close" ContentDisplay="{Binding DisplayType}"/>
+ </Grid>
+```
 
 
