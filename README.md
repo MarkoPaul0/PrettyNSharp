@@ -25,9 +25,9 @@ Create beautiful and scalable custom UI controls for your c#/WPF application. **
 ### Create a PrettyNSharp button, aka. SharpButton
 
 ```xaml
-<pns:SharpButton Height="25"  Width="50"  Vector="{StaticResource Gear}" VectorSize="Auto,50%"/>
-<pns:SharpButton Height="50"  Width="100" Vector="{StaticResource Mail}" VectorSize="Auto,50%"/>
-<pns:SharpButton Height="100" Width="200" Vector="{StaticResource Star}" VectorSize="Auto,50%"/>
+<pns:SharpButton Height="25"  Width="50"  Vector="{StaticResource Gear}" VectorHeight="50%"/>
+<pns:SharpButton Height="50"  Width="100" Vector="{StaticResource Mail}" VectorHeight="50%"/>
+<pns:SharpButton Height="100" Width="200" Vector="{StaticResource Star}" VectorHeight="50%"/>
 ```
 This gives you the following:
 
