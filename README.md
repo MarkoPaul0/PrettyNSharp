@@ -56,6 +56,12 @@ The xaml achieving this level of prettiness is as follows:
                  Background="#E83140" BackgroundOnHover="#E87E87" BackgroundOnClick="#E83140"/>
 ```
 
+Of course you can also define a style matching the results shown above, allowing you to reuse your close button design very quickly. Your xaml could become as simple as:
+
+```xaml
+<pns:SharpButton style={StaticResource CloseButtonStyle}/>
+```
+
 
 
 
