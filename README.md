@@ -77,3 +77,20 @@ In any case, the xaml achieving this *never-seen-before level of beautifulness* 
 <pns:SharpCheckbox BorderThickness="4" Height="50" CornerRadius="25" MarkMargin="5"/>
 ```
 
+### A neat feature of SharpButton: ContentDisplayType
+
+Since a picture is worth a 1000 words, let's check that one out.
+
+| ![](doc/display_type_button_demo.gif) |
+|:--:| 
+| *[PrettyNSharp] ContentDisplay Type in SharpButton* |
+
+This was actually a gif, and since it contains 52 frames, I guess it's worth 52,000 words. *How about that..*<br>
+As you can see, buttons can be switched between 3 types of "display type":
+* IconOnly: this is the default value, only the SVG is displayed
+* Both: both the SVG and the content are diplayed
+* ContentOnly: only the content is displayed
+
+This is very cool (*or at least I decided so*) if you have an app with a lot of menus and buttons. Once you are familiar with that app you might be ok with Icons only, but for a while you might want to have a look at what they mean without having to wait for the tooltip to show up.
+
+
