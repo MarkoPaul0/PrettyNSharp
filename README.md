@@ -4,11 +4,12 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/old-licenses/gpl-3.0.en.html)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MarkoPaul0/PrettyNSharp.svg?style=flat-square&maxAge=300)
 
-Create beautiful and scalable custom UI controls for your c#/WPF application. **It's quick, easy, pretty, and always sharp!**
+Leverage the power of vector-graphics to create beautiful and scalable custom UI controls for your c#/WPF application. **It's quick, easy, pretty, and always sharp!**
 
 | ![](doc/pns_scalability.gif) |
 |:--:| 
 | *[PrettyNSharp] Scalable Desgin: no more blurry controls!* |
+
 
 ## How to get started
 ### To run the demo code with the PrettyNSharp solution
