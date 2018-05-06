@@ -18,7 +18,7 @@ Create beautiful and scalable custom UI controls for your c#/WPF application. **
 ### To use PrettyNSharp in your own solution
 * Add [PrettyNSharp project file](prettynsharp/PrettyNSharp.csproj) to your solution
 * Add reference to PrettyNSharp to the project(s) which will use PrettyNSharp
-* (Optional) If you want to use my own SVG design, add a reference to the PrettyNSharp SVGDictionary (more on that later)
+* (Optional) If you want to use my SVG designs, add a reference to the PrettyNSharp [SVG Dictionary](prettynsharp/SVGLibrary.xaml) in your App.xaml.
 * You're ready to rock
 
 ## Examples:
