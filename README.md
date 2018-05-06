@@ -22,7 +22,7 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 * (Optional) If you want to use my SVG designs, add a reference to the PrettyNSharp [SVG Dictionary](prettynsharp/SVGLibrary.xaml) in your App.xaml. (c.f. [Use SVG defined in PrettyNSharp](https://github.com/MarkoPaul0/PrettyNSharp/wiki/Use-SVG-designs-defined-in-PrettyNSharp))
 * You're ready to rock :thumbsup:
 
-## Examples:
+## Examples
 ### Create a PrettyNSharp button, aka. SharpButton
 
 ```xaml
@@ -35,6 +35,25 @@ This gives you the following:
 | ![](doc/how_to_star.png) |
 |:--:| 
 | *[PrettyNSharp] That's how you star a repo by the way ;)* |
+
+## Customize your PrettyNSharp UI control
+
+PrettyNSharp controls are customizable just like any other WPF control. Here I will showcase a few things you could do to make your PrettyNSharp controls even prettier!
+
+### Example of PrettyNSharp close button
+
+Let's say you want your close button to look like this:
+| ![](doc/close_button_demo.gif) |
+|:--:| 
+| *[PrettyNSharp] A pretty close-button* |
+
+The xaml achieving this level of prettiness is as follows:
+
+```xaml
+<pns:SharpButton Width="100" BorderThickness="0"
+                 Vector="{StaticResource Cross}" VectorHeight="50%" VectorBrush="White" 
+                 Background="#E83140" BackgroundOnHover="#E87E87" BackgroundOnClick="#E83140"/>
+```
 
 
 
