@@ -87,11 +87,11 @@ Since a picture is worth a 1000 words, let's check that one out.
 
 This was actually a gif, and since it contains 52 frames, I guess it's worth 52,000 words. *How about that..*<br>
 As you can see, buttons can be switched between 3 types of "display type":
-* IconOnly: this is the default value, only the SVG is displayed
-* Both: both the SVG and the content are diplayed
-* ContentOnly: only the content is displayed
+* **IconOnly**: this is the default value, only the SVG is displayed
+* **Both**: both the SVG and the content are diplayed
+* **ContentOnly**: only the content is displayed
 
-This is very cool (*or at least I decided so*) if you have an app with a lot of menus and buttons. Once you are familiar with that app you might be ok with Icons only, but for a while you might want to have a look at what they mean without having to wait for the tooltip to show up.
+This is very cool (*I decided so*) if you have an app with a lot of menus and buttons. Once you are familiar with that app you might be ok with Icons only, but for a while you might want to have a look at what they mean without having to wait for the tooltip to show up.
 
 This unparalleled level of refinement was achieved with the following xaml:
 
