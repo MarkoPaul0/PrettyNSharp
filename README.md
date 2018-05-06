@@ -43,6 +43,7 @@ PrettyNSharp controls are customizable just like any other WPF control. Here I w
 ### Example of PrettyNSharp close button
 
 Let's say you want your close button to look like this:
+
 | ![](doc/close_button_demo.gif) |
 |:--:| 
 | *[PrettyNSharp] A pretty close-button* |
