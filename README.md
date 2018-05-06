@@ -48,7 +48,7 @@ Let's say you want your close button to look like this:
 |:--:| 
 | *[PrettyNSharp] A pretty close-button* |
 
-The xaml achieving this level of prettiness is as follows:
+The xaml achieving this *level of prettiness* is as follows:
 
 ```xaml
 <pns:SharpButton Width="100" BorderThickness="0"
@@ -62,7 +62,18 @@ Of course you can also define a style matching the results shown above, allowing
 <pns:SharpButton style={StaticResource CloseButtonStyle}/>
 ```
 
+### Example of PrettyNSharp checkbox
 
+Let's say you want your close button to look like this:
 
+| ![](doc/radio_checkbox_demo.gif) |
+|:--:| 
+| *[PrettyNSharp] A pretty checkbox* |
 
+I actually do not recommend that design because it looks like a radio button when it is unchecked (and it is not a radio button, since it is checkbox. *I know, this was hard to follow..*)
+In any case, the xaml achieving this *never-seen-before level of beautifulness* is as follows:
+
+```xaml
+<pns:SharpCheckbox BorderThickness="4" Height="50" CornerRadius="25" MarkMargin="5"/>
+```
 
