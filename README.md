@@ -18,22 +18,30 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 
 ### To use PrettyNSharp in your own solution
 * Add the PrettyNSharp project file [PrettyNSharp.csproj](prettynsharp/PrettyNSharp.csproj) to your solution (c.f. [Add existing project to solution](https://docs.microsoft.com/en-us/sql/ssms/solution/add-an-existing-project-to-a-solution?view=sql-server-2017))
-* Add reference to PrettyNSharp to the project(s) in your solution which will use PrettyNSharp (c.f [Add project reference](https://msdn.microsoft.com/en-us/library/hh708954.aspx))
+* Add a reference to PrettyNSharp to the project(s) in your solution which will use PrettyNSharp (c.f [Add project reference](https://msdn.microsoft.com/en-us/library/hh708954.aspx))
 * (Optional) If you want to use my SVG designs, add a reference to the PrettyNSharp [SVG Dictionary](prettynsharp/SVGLibrary.xaml) in your App.xaml. (c.f. [Use SVG defined in PrettyNSharp](https://github.com/MarkoPaul0/PrettyNSharp/wiki/Use-SVG-designs-defined-in-PrettyNSharp))
+* Add a namespace to each xaml file using a PrettyNSharp control
 * You're ready to rock :thumbsup:
 
 ## Usage
-The PrettyNSharp contains 3 types of controls: the **SharpDisplay**, the **SharpButton**, and the **SharpCheckbox**.
+The PrettyNSharp library contains 3 types of controls: the **SharpDisplay**, the **SharpButton**, and the **SharpCheckbox**.
 
 <img src="doc/sharpdisplay_details.PNG" align="right"/>
+
 <br>
 
 ### The SharpDisplay 
 
-The SharpDisplay is a WPF user control which allows you to display SVG data without headache. It does so by exposing the following dependency propeties:
-* **Vector**: set an SVG graphic design as your button icon
-* **VectorWidth** and **VectorHeight**: set the width and heigh of your button (wich can be a number, Auto, a percentage, or \*)
+The SharpDisplay is a WPF user control which allows you to display SVG data without headache. It does so by exposing the following dependency properties:
+* **Vector**: set the SVG graphic design you want to display
+* **VectorWidth** and **VectorHeight**: set the width and heigh of the SVG design (which can be a number, Auto, a percentage, or \*)
 * **VectorBrush**: fill color of the Vector
+
+The SharpDisplay showcased above was produced using the following xaml code:
+```xaml
+<pns:SharpDisplay  Width="250" Height="250" Background="LightBlue" BorderThickness="1"
+                   VectorBrush="#007ACC" Vector="{StaticResource Gear}" VectorHeight="50%"/>
+```
 
 <br>
 
@@ -48,7 +56,7 @@ The SharpButton is a user control deriving from the standard [C#/WPF Button clas
 ### The SharpCheckbox
 
 The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *guess what* - a few added bonuses. Such added properties include:
-* **CheckMark** and **NullMark**: set an SVG graphic design as your mark when IsSet is true and null, repectively
+* **CheckMark** and **NullMark**: set the SVG graphic designs used for the checkbox mark when the IsSet property is true and null, repectively
 * **MarkBrush** and **MarkHighligh**: set the fill color for the mark in normal conditions and when the mouse is over, respectively
 * **BorderOnHover**: set the border color when the mouse is over
 * **CornerRadius**: set the border corner radius
@@ -109,7 +117,7 @@ In any case, the xaml achieving this *never-seen-before level of beauty* is as f
 <pns:SharpCheckbox BorderThickness="4" Height="50" CornerRadius="25" MarkMargin="5"/>
 ```
 
-### A neat feature of SharpButton: ContentDisplayType
+### A neat feature of SharpButton: ContentDisplay types
 
 Since a picture is worth a 1000 words, let's check that one out.
 
@@ -118,7 +126,7 @@ Since a picture is worth a 1000 words, let's check that one out.
 | *[PrettyNSharp] ContentDisplay Type in SharpButton* |
 
 This was actually a gif, and since it contains 52 frames, I guess it's worth 52,000 words. *How about that..*<br>
-As you can see, buttons can be switched between 3 types of "display type":
+As you can see, buttons can be switched between 3 types of "Content Display":
 * **IconOnly**: this is the default value, only the SVG is displayed
 * **Both**: both the SVG and the content are diplayed
 * **ContentOnly**: only the content is displayed
