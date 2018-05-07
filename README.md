@@ -14,7 +14,7 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 ## How to get started
 ### To run the demo code with the PrettyNSharp solution
 * Open the [PrettyNSharp solution](PrettyNSharp.sln) with VisualStudio
-* Run 
+* Run
 
 ### To use PrettyNSharp in your own solution
 * Add the PrettyNSharp project file [PrettyNSharp.csproj](prettynsharp/PrettyNSharp.csproj) to your solution (c.f. [Add existing project to solution](https://docs.microsoft.com/en-us/sql/ssms/solution/add-an-existing-project-to-a-solution?view=sql-server-2017))
@@ -24,18 +24,29 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 
 ## Usage
 The PrettyNSharp contains 3 types of controls: the **SharpDisplay**, the **SharpButton**, and the **SharpCheckbox**.
-### The SharpDisplay
+
+<img src="doc/sharpdiplay_details.PNG" align="right"/>
+<br>
+
+### The SharpDisplay 
+
 The SharpDisplay is a WPF user control which allows you to display SVG data without headache. It does so by exposing the following dependency propeties:
 * **Vector**: set an SVG graphic design as your button icon
 * **VectorWidth** and **VectorHeight**: set the width and heigh of your button (wich can be a number, Auto, a percentage, or \*)
 * **VectorBrush**: fill color of the Vector
 
+<br>
+
 ### The SharpButton
+
 The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses, which make *a wooOOoooOOoorld of difference, nothing less*. Such added properties include the ones introduced with SharpDisplay but also:
 * **HighlightBrush**: fill color of the Vector when the mouse is over
 * **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
 
+<br>
+
 ### The SharpCheckbox
+
 The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *guess what* - a few added bonuses. Such added properties include:
 * **CheckMark** and **NullMark**: set an SVG graphic design as your mark when IsSet is true and null, repectively
 * **MarkBrush** and **MarkHighligh**: set the fill color for the mark in normal conditions and when the mouse is over, respectively
