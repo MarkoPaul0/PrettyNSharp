@@ -30,11 +30,11 @@ The PrettyNSharp library contains 3 types of controls: the **SharpDisplay**, the
 
 <br>
 
-### The SharpDisplay 
+## The SharpDisplay 
 
 The SharpDisplay is a WPF user control which allows you to display SVG data without headache. It does so by exposing the following dependency properties:
 * **Vector**: set the SVG graphic design you want to display
-* **VectorWidth** and **VectorHeight**: set the width and heigh of the SVG design (which can be a number, Auto, a percentage, or \*)
+* **VectorWidth** and **VectorHeight**: set the width and heigh of the SVG design (which can be a number, Auto, a percentage, or \*, [more on that here](#more_on_size))
 * **VectorBrush**: fill color of the Vector
 
 The SharpDisplay showcased above was produced using the following xaml code:
@@ -43,13 +43,13 @@ The SharpDisplay showcased above was produced using the following xaml code:
                    VectorBrush="#007ACC" Vector="{StaticResource Gear}" VectorHeight="50%"/>
 ```
 
-### The SharpButton
+## The SharpButton
 
 The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses, which make *a wooOOoooOOoorld of difference, nothing less*. Such added properties include the ones introduced with SharpDisplay but also:
 * **HighlightBrush**: fill color of the Vector when the mouse is over
 * **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
 
-### The SharpCheckbox
+## The SharpCheckbox
 
 The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *guess what* - a few added bonuses. Such added properties include:
 * **CheckMark** and **NullMark**: set the SVG graphic designs used for the checkbox mark when the IsSet property is true and null, repectively
@@ -71,6 +71,17 @@ This gives you the following:
 |:--:| 
 | *[PrettyNSharp] That's how you star a repo by the way ;)* |
 -->
+
+<a name="more_on_size"/>
+
+## More about VectorHeight and VectorWidth
+As seen before, you can control the size of the vector by setting its height and width. Both properties are of type **AdvanceLength**, which allows you to fine tune how you want the vector to be displayed. AdancedLength allows for 3 types of values:
+* **Auto**: this is the default value. The vector will take as much space as available without deforming its proportions.
+* **\***: if set to \*, the vector will take as much space as possible in the corresponding direction.
+* **\<percentage>**: if set to 10%, the vector will take 10% of its container in that direction
+* **\<double>**: if set to an absolute value, the vector will simply be resized to that value.
+  
+A cool thing to note is that if only the width is set to a non Auto value, then the vector will match that width while the height is automatically set to preserve the vector's proportions.
 
 ## Customize your PrettyNSharp UI controls
 
