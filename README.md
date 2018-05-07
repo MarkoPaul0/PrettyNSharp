@@ -43,15 +43,11 @@ The SharpDisplay showcased above was produced using the following xaml code:
                    VectorBrush="#007ACC" Vector="{StaticResource Gear}" VectorHeight="50%"/>
 ```
 
-<br>
-
 ### The SharpButton
 
 The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses, which make *a wooOOoooOOoorld of difference, nothing less*. Such added properties include the ones introduced with SharpDisplay but also:
 * **HighlightBrush**: fill color of the Vector when the mouse is over
 * **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
-
-<br>
 
 ### The SharpCheckbox
 
