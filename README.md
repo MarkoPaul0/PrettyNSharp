@@ -25,7 +25,7 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 ## Usage
 The PrettyNSharp contains 3 types of controls: the **SharpDisplay**, the **SharpButton**, and the **SharpCheckbox**.
 
-<img src="doc/sharpdiplay_details.PNG" align="right"/>
+<img src="doc/sharpdisplay_details.PNG" align="right"/>
 <br>
 
 ### The SharpDisplay 
