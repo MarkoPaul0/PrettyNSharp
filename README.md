@@ -22,7 +22,27 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 * (Optional) If you want to use my SVG designs, add a reference to the PrettyNSharp [SVG Dictionary](prettynsharp/SVGLibrary.xaml) in your App.xaml. (c.f. [Use SVG defined in PrettyNSharp](https://github.com/MarkoPaul0/PrettyNSharp/wiki/Use-SVG-designs-defined-in-PrettyNSharp))
 * You're ready to rock :thumbsup:
 
-## Examples
+## Usage
+The PrettyNSharp contains 3 types of controls: the **SharpDisplay**, the **SharpButton**, and the **SharpCheckbox**.
+### The SharpDisplay
+The SharpDisplay is a WPF user control which allows you to display SVG data without headache. It does so by exposing the following dependency propeties:
+* **Vector**: set an SVG graphic design as your button icon
+* **VectorWidth** and **VectorHeight**: set the width and heigh of your button (wich can be a number, Auto, a percentage, or \*)
+* **VectorBrush**: fill color of the Vector
+
+### The SharpButton
+The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses, which make *a wooOOoooOOoorld of difference, nothing less*. Such added properties include the ones introduced with SharpDisplay but also:
+* **HighlightBrush**: fill color of the Vector when the mouse is over
+* **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
+
+### The SharpCheckbox
+The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *guess what* - a few added bonuses. Such added properties include:
+* **CheckMark** and **NullMark**: set an SVG graphic design as your mark when IsSet is true and null, repectively
+* **MarkBrush** and **MarkHighligh**: set the fill color for the mark in normal conditions and when the mouse is over, respectively
+* **BorderOnHover**: set the border color when the mouse is over
+* **CornerRadius**: set the border corner radius
+
+<!--
 ### Create a PrettyNSharp button, aka. SharpButton
 
 ```xaml
@@ -35,8 +55,9 @@ This gives you the following:
 | ![](doc/how_to_star.png) |
 |:--:| 
 | *[PrettyNSharp] That's how you star a repo by the way ;)* |
+-->
 
-## Customize your PrettyNSharp UI control
+## Customize your PrettyNSharp UI controls
 
 PrettyNSharp controls are customizable just like any other WPF control. Here I will showcase a few things you could do to make your PrettyNSharp controls even prettier!
 
