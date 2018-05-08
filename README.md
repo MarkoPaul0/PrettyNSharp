@@ -17,11 +17,11 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 * Run
 
 ### To use PrettyNSharp in your own solution
-* Add the PrettyNSharp project file [PrettyNSharp.csproj](prettynsharp/PrettyNSharp.csproj) to your solution (c.f. [Add existing project to solution](https://docs.microsoft.com/en-us/sql/ssms/solution/add-an-existing-project-to-a-solution?view=sql-server-2017))
-* Add a reference to PrettyNSharp to the project(s) in your solution which will use PrettyNSharp (c.f [Add project reference](https://msdn.microsoft.com/en-us/library/hh708954.aspx))
-* (Optional) If you want to use my SVG designs, add a reference to the PrettyNSharp [SVG Dictionary](prettynsharp/SVGLibrary.xaml) in your App.xaml. (c.f. [Use SVG defined in PrettyNSharp](https://github.com/MarkoPaul0/PrettyNSharp/wiki/Use-SVG-designs-defined-in-PrettyNSharp))
-* Add a namespace to each xaml file using a PrettyNSharp control
-* You're ready to rock :thumbsup:
+* Add the [PrettyNSharp project](prettynsharp/PrettyNSharp.csproj) to your solution (c.f. [Add existing project to solution](https://docs.microsoft.com/en-us/sql/ssms/solution/add-an-existing-project-to-a-solution?view=sql-server-2017))
+* Add a PrettyNSharp reference to every project in your solution using it (c.f [Add project reference](https://msdn.microsoft.com/en-us/library/hh708954.aspx))
+* (Optional) If you want to use my SVG designs, add a reference to the PrettyNSharp [SVG Dictionary](prettynsharp/SVGLibrary.xaml) in your App.xaml (c.f. [Use SVG defined in PrettyNSharp](https://github.com/MarkoPaul0/PrettyNSharp/wiki/Use-SVG-designs-defined-in-PrettyNSharp))
+* Add the following PrettyNSharp xmlns mapping `xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"` in all XAML files using PrettyNSharp controls (c.f. [Mapping to custom assemblies](https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/xaml-namespaces-and-namespace-mapping-for-wpf-xaml#mapping-to-custom-classes-and-assemblies))
+* You're ready to rock :thumbsup: If you have issues, look at the [ExampleWPFApp](/examples/ExampleWPFApp)
 
 ## Usage
 The PrettyNSharp library contains 3 types of controls: the **SharpDisplay**, the **SharpButton**, and the **SharpCheckbox**.
@@ -37,7 +37,7 @@ The SharpDisplay is a WPF user control which allows you to display SVG data with
 * **VectorWidth** and **VectorHeight**: set the width and heigh of the SVG design (which can be a number, Auto, a percentage, or \*, [more on that here](#more_on_size))
 * **VectorBrush**: fill color of the Vector
 
-The SharpDisplay showcased above was produced using the following xaml code:
+The SharpDisplay showcased on the right was produced using the following xaml code:
 ```xaml
 <pns:SharpDisplay  Width="250" Height="250" Background="LightBlue" BorderThickness="1"
                    VectorBrush="#007ACC" Vector="{StaticResource Gear}" VectorHeight="50%"/>
@@ -45,43 +45,30 @@ The SharpDisplay showcased above was produced using the following xaml code:
 
 ## The SharpButton
 
-The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses, which make *a wooOOoooOOoorld of difference, nothing less*. Such added properties include the ones introduced with SharpDisplay but also:
+The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses, which make *a wooOOoooOOoorld of difference*. Such added properties include the ones introduced with SharpDisplay as well as:
 * **HighlightBrush**: fill color of the Vector when the mouse is over
 * **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
 
 ## The SharpCheckbox
 
-The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *guess what* - a few added bonuses. Such added properties include:
-* **CheckMark** and **NullMark**: set the SVG graphic designs used for the checkbox mark when the IsSet property is true and null, repectively
+The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *you guessed it* - a few added bonuses. Such added properties include:
+* **CheckMark** and **NullMark**: set the SVG graphic designs used as checkbox mark when the IsSet property is true and null, repectively
 * **MarkBrush** and **MarkHighligh**: set the fill color for the mark in normal conditions and when the mouse is over, respectively
 * **BorderOnHover**: set the border color when the mouse is over
 * **CornerRadius**: set the border corner radius
 
-<!--
-### Create a PrettyNSharp button, aka. SharpButton
 
-```xaml
-<pns:SharpButton Height="25"  Width="50"  Vector="{StaticResource Gear}" VectorHeight="50%"/>
-<pns:SharpButton Height="50"  Width="100" Vector="{StaticResource Mail}" VectorHeight="50%"/>
-<pns:SharpButton Height="100" Width="200" Vector="{StaticResource Star}" VectorHeight="50%"/>
-```
-This gives you the following:
-
-| ![](doc/how_to_star.png) |
-|:--:| 
-| *[PrettyNSharp] That's how you star a repo by the way ;)* |
--->
 
 <a name="more_on_size"/>
 
 ## More about VectorHeight and VectorWidth
 As seen before, you can control the size of the vector by setting its height and width. Both properties are of type **AdvanceLength**, which allows you to fine tune how you want the vector to be displayed. AdancedLength allows for 3 types of values:
-* **Auto**: this is the default value. The vector will take as much space as available without deforming its proportions.
-* **\***: if set to \*, the vector will take as much space as possible in the corresponding direction.
+* **Auto**: this is the default value. The vector will take as much space as available while maitaining its proportions
+* **\***: if set to \*, the vector will take as much space as possible in the corresponding direction
 * **\<percentage>**: if set to 10%, the vector will take 10% of its container in that direction
-* **\<double>**: if set to an absolute value, the vector will simply be resized to that value.
-  
-A cool thing to note is that if only the width is set to a non Auto value, then the vector will match that width while the height is automatically set to preserve the vector's proportions.
+* **\<double>**: if set to an absolute value, the vector take that absolute size in that direction
+
+**A cool thing to note is that as long as one dimension is set to Auto, then the vector will maintain its proportions.** So for example you can say "*I want the vector to take 50% of the width of the SharpButton, while keeping its proportions intact*". To do so you simply set `VectorWidth="50%"`. (Since Auto is the default value, you don't have to explicitely set `VectorHeight=Auto`)
 
 ## Customize your PrettyNSharp UI controls
 
@@ -117,7 +104,7 @@ Let's say you want your checkboxes to look like this:
 |:--:| 
 | *[PrettyNSharp] A pretty checkbox* |
 
-I actually do not recommend that design because it looks like a radio button when it is unchecked (and it is not a radio button, since it is checkbox. *I know, this was hard to follow..*)
+I actually do not recommend that design because it resembles a radio buttion, especially when unchecked. At the same time I wanted to show the design possibilities by doing something quite *different*.
 In any case, the xaml achieving this *never-seen-before level of beauty* is as follows:
 
 ```xaml
@@ -138,9 +125,9 @@ As you can see, buttons can be switched between 3 types of "Content Display":
 * **Both**: both the SVG and the content are diplayed
 * **ContentOnly**: only the content is displayed
 
-This is very cool (*I decided so*) if you have an app with a lot of menus and buttons. Once you are familiar with that app you might be ok with Icons only, but for a while you might want to have a look at what they mean without having to wait for the tooltip to show up.
+This is very cool - *I decided so* - if you have an app with a lot of menus and buttons. Once you are familiar with that app you might be ok with Icons only, but for a while you might want to have a look at what things mean without having to wait for the tooltip to show up.
 
-This unparalleled level of refinement was achieved with the following xaml:
+This unparalleled *level of refinement* was achieved with the following xaml:
 
 ```xaml
 <Grid >
@@ -169,6 +156,9 @@ This unparalleled level of refinement was achieved with the following xaml:
                      Content="Close" ContentDisplay="{Binding DisplayType}"/>
  </Grid>
 ```
+
+### A neat feature of the SharpCheckbox: "toggle mode"
+(coming soon)
 
 ## Create your own SVG designs
 (comming soon)
