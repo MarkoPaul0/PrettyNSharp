@@ -101,7 +101,10 @@ Of course you can also define a style matching the results shown above, allowing
 
 <img src="doc/radio_checkbox_demo.gif" align="right"/>
 
-Let's say you want your checkboxes to look like this. I actually do not recommand that design because it resembles a radio buttion, especially when unchecked. This example is here to show possibilities by doing something quite *different*.<br>
+Let's say you want your checkboxes to look like this. I actually do not recommand that design because it resembles a radio buttion, especially when unchecked. This example is here to show possibilities by doing something quite *different*.
+
+<br>
+
 In any case, the xaml achieving this *never-seen-before level of beauty* is as follows:
 
 ```xaml
