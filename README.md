@@ -45,11 +45,15 @@ The SharpDisplay showcased on the right was produced using the following xaml co
 
 ## The SharpButton
 
+<img src="doc/button_demo.gif" align="right"/>
+
 The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses, which make *a wooOOoooOOoorld of difference*. Such added properties include the ones introduced with SharpDisplay as well as:
 * **HighlightBrush**: fill color of the Vector when the mouse is over
 * **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
 
 ## The SharpCheckbox
+
+<img src="doc/checkbox_demo.gif" align="right"/>
 
 The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *you guessed it* - a few added bonuses. Such added properties include:
 * **CheckMark** and **NullMark**: set the SVG graphic designs used as checkbox mark when the IsSet property is true and null, repectively
@@ -74,14 +78,11 @@ As seen before, you can control the size of the vector by setting its height and
 
 PrettyNSharp controls are customizable just like any other WPF control. Here I will showcase a few things you could do to make your PrettyNSharp controls even prettier!
 
-### Example of PrettyNSharp close button
+### Example of customized close SharpButton
 
-Let's say you want your close button to look like this:
+<img src="doc/close_button_demo.gif" align="right"/>
 
-| ![](doc/close_button_demo.gif) |
-|:--:| 
-| *[PrettyNSharp] A pretty close-button* |
-
+Let's say you want your close button to look like this. In that case I would start by telling you that you are a person with great taste. The cool thing is, your great taste can become reality with with PrettyNSharp.
 The xaml achieving this *level of prettiness* is as follows:
 
 ```xaml
@@ -96,15 +97,11 @@ Of course you can also define a style matching the results shown above, allowing
 <pns:SharpButton style={StaticResource CloseButtonStyle}/>
 ```
 
-### Example of PrettyNSharp checkbox
+### Example of customized SharpCheckbox
 
-Let's say you want your checkboxes to look like this:
+<img src="doc/radio_checkbox_demo.gif" align="right"/>
 
-| ![](doc/radio_checkbox_demo.gif) |
-|:--:| 
-| *[PrettyNSharp] A pretty checkbox* |
-
-I actually do not recommend that design because it resembles a radio buttion, especially when unchecked. At the same time I wanted to show the design possibilities by doing something quite *different*.
+Let's say you want your checkboxes to look like this. I actually do not recommand that design because it resembles a radio buttion, especially when unchecked. This example is here to show possibilities by doing something quite *different*.<br>
 In any case, the xaml achieving this *never-seen-before level of beauty* is as follows:
 
 ```xaml
