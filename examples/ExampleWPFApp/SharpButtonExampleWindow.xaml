@@ -1,0 +1,19 @@
+﻿<Window x:Class="ExampleWPFApp.SharpButtonExampleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExampleWPFApp"
+        mc:Ignorable="d"
+        xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"
+        Title="SharpButtonExampleWindow" Height="300" Width="300">
+    <Border Background="LightGray">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <pns:SharpButton Width="160" Height="90" HorizontalAlignment="Center" VectorHeight="50%" BorderThickness="0"
+                             Vector="{StaticResource Mail}"/>
+        </Grid>
+    </Border>
+</Window>

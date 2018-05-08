@@ -13,5 +13,13 @@ namespace ExampleWPFApp
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            OneSharpCheckbox osc = new OneSharpCheckbox();
+            osc.Show();
+
+            SharpButtonExampleWindow sbew = new SharpButtonExampleWindow();
+            sbew.Show();
+        }
     }
 }

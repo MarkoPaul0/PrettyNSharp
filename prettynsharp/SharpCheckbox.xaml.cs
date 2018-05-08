@@ -20,9 +20,9 @@ namespace PrettyNSharp
             DependencyProperty.Register("Checkmark", typeof(Path), typeof(SharpCheckbox), new PropertyMetadata(null));
 
         // SVG when checkbox is in 3 state mode, and value isChecked value is null
-        public Vector Nullmark { get { return (Vector)GetValue(NullmarkProperty); } set { SetValue(NullmarkProperty, value); } }
+        public Path Nullmark { get { return (Path)GetValue(NullmarkProperty); } set { SetValue(NullmarkProperty, value); } }
         public static readonly DependencyProperty NullmarkProperty =
-            DependencyProperty.Register("Nullmark", typeof(Vector), typeof(SharpCheckbox), new FrameworkPropertyMetadata(default(Vector)));
+            DependencyProperty.Register("Nullmark", typeof(Path), typeof(SharpCheckbox), new FrameworkPropertyMetadata(null));
 
         // Checkmark And Nullmark fill color
         public Brush MarkBrush { get { return (Brush)GetValue(VectorBrushProperty); } set { SetValue(VectorBrushProperty, value); } }
