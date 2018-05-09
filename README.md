@@ -24,7 +24,7 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 * You're ready to rock :thumbsup: If you have issues, look at the [ExampleWPFApp](/examples/ExampleWPFApp)
 
 ## Usage
-The PrettyNSharp library contains 3 types of controls: the **SharpDisplay**, the **SharpButton**, and the **SharpCheckbox**.
+<img src="doc/clean_all_demo.gif" align="center"/>
 
 <img src="doc/sharpdisplay_details.PNG" align="right"/>
 
