@@ -155,10 +155,20 @@ As seen before, you can control the size of the vector by setting its height and
 
 **A cool thing to note is that as long as one dimension is set to Auto, then the vector will maintain its proportions.** So for example you can say "*I want the vector to take 50% of the width of the SharpButton, while keeping its proportions intact*". To do so you simply set `VectorWidth="50%"`. (Since Auto is the default value, you don't have to explicitely set `VectorHeight=Auto`)
 
+<!--
 ### A neat feature of the SharpCheckbox: "toggle mode"
 (coming soon)
+-->
 
 ## Create your own SVG designs
-(comming soon)
+All the SVG designs available in the [SVGLibrary](prettynsharp/SVGLibrary.xaml) are mine (and now also yours). By "mine" I mean I made them myself. Now that you are impressed, please know that you can do the same. It is actually very simple. 
+
+I would recommend using [InkScape](https://inkscape.org/en/). It's got all the features we need and it is very easy to pick up. This is not meant to be a tutorial, but rather a quick outline of what you need to do if you want to create a new vector design:
+* Draw a shape (which can be a compound of multiple shapes)
+* Convert them to a path and combine them
+* Save the document as SVG
+* Open that document in a text editor and find the SVG data.
+* Copy that data into the Data property of a path object ```<Path x:Key="NewDesign" Data="COPY_DATA_HERE"/>```
+* Now assuming this path is in an XAML dictionary, you can now create a sharp control with that vector ``<pns:SharpDisplay Vector={StaticResource NewDesign}>```
 
 
