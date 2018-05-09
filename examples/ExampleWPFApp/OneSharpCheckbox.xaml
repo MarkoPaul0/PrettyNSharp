@@ -7,17 +7,18 @@
         mc:Ignorable="d"
         xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"
         Title="SharpCheckbox Example" Height="300" Width="300">
-    <Border Background="LightGray">
+    <Border Background="White">
         <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--<pns:SharpCheckbox Grid.Column="1" BorderThickness="4" Height="80" CornerRadius="40" MarkMargin="4" 
-                               IsThreeState="True" Checkmark="{StaticResource Plus}" Nullmark="{StaticResource Disk}"
-                               Click="SharpCheckbox_Click"/>-->
-            <pns:SharpCheckbox Grid.Column="1" BorderThickness="0" Background="Transparent" Checkmark="{StaticResource Star}" Height="80" MarkMargin="4"/>
+            <!--<pns:SharpCheckbox Grid.Column="1" Height="80" BorderThickness="4" />-->
+            <pns:SharpCheckbox Grid.Column="1" BorderThickness="4" Height="80" CornerRadius="40" MarkMargin="4" 
+                               IsThreeState="False" Checkmark="{StaticResource Plus}" Nullmark="{StaticResource Disk}"
+                               />
+            <!--<pns:SharpCheckbox Grid.Column="1" BorderThickness="0" Background="Transparent" Checkmark="{StaticResource Star}" Height="80" MarkMargin="4"/>-->
         </Grid>
     </Border>
 </Window>

@@ -6,14 +6,45 @@
         xmlns:local="clr-namespace:ExampleWPFApp"
         mc:Ignorable="d"
         xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"
-        Title="SharpButtonExampleWindow" Height="300" Width="300">
-    <Border Background="LightGray">
+        Title="SharpButtonExampleWindow" Height="300" Width="500">
+    <Border Background="White" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <pns:SharpButton Width="160" Height="90" HorizontalAlignment="Center" VectorHeight="50%" BorderThickness="0"
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="SharpDisplay" VerticalAlignment="Center" Margin="8" FontSize="14" FontWeight="Bold"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="SharpButton" VerticalAlignment="Center" Margin="8" FontSize="14" FontWeight="Bold"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="SharpCheckbox" VerticalAlignment="Center" Margin="8" FontSize="14" FontWeight="Bold"/>
+
+            <TextBlock Grid.Column="3" Grid.Row="0" Text="&lt;pns:SharpDisplay/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
+            <TextBlock Grid.Column="3" Grid.Row="1" Text="&lt;pns:SharpButton/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="&lt;pns:SharpCheckbox/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
+            <pns:SharpDisplay  Grid.Column="1" Height="70"
+                                       Background="White"
+                                       VectorBrush="Black"
+                                       Vector="{StaticResource Gear}"  BorderThickness="1"/>
+            <pns:SharpButton Grid.Column="1" Grid.Row="1" Margin="8"
+                               Height="70" HorizontalAlignment="Stretch" VectorHeight="40%" BorderThickness="1"
+                             CornerRadius="10"
                              Vector="{StaticResource Mail}"/>
+            <pns:SharpCheckbox Grid.Column="1" Grid.Row="2"
+                               Height="70" HorizontalAlignment="Center" BorderThickness="4"/>
+
+            <!--<pns:SharpButton Width="130" Height="80" HorizontalAlignment="Center" VectorHeight="50%" BorderThickness="1"
+                             CornerRadius="10"
+                             Vector="{StaticResource Mail}"/>
+            <pns:SharpButton Grid.Column="1" Width="100" Height="70" BorderThickness="0"
+                 Vector="{StaticResource Cross}" VectorHeight="42%" VectorBrush="White" 
+                 Background="#E83140" BackgroundOnHover="#E87E87" BackgroundOnClick="#E83140"/>-->
         </Grid>
     </Border>
 </Window>

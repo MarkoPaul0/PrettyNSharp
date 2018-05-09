@@ -15,11 +15,11 @@ namespace ExampleWPFApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            OneSharpCheckbox osc = new OneSharpCheckbox();
-            osc.Show();
+            //OneSharpCheckbox osc = new OneSharpCheckbox();
+            //osc.Show();
 
-            SharpButtonExampleWindow sbew = new SharpButtonExampleWindow();
-            sbew.Show();
+            //SharpButtonExampleWindow sbew = new SharpButtonExampleWindow();
+            //sbew.Show();
         }
     }
 }
