@@ -45,7 +45,7 @@ The SharpDisplay showcased on the right was produced using the following xaml co
 
 ## The SharpButton
 
-<img src="doc/button_demo.gif" align="right"/>
+<img src="doc/clean_button_demo.gif" align="right"/>
 
 The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses:
 * **HighlightBrush**: fill color of the Vector when the mouse is over
@@ -54,7 +54,7 @@ The SharpButton is a user control deriving from the standard [C#/WPF Button clas
 
 ## The SharpCheckbox
 
-<img src="doc/checkbox_demo.gif" align="right"/>
+<img src="doc/clean_checkbox_demo.gif" align="right"/>
 
 The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *you guessed it* - a few added bonuses:
 * **CheckMark** and **NullMark**: set the SVG graphic designs used as checkbox mark when the IsSet property is true and null, repectively
