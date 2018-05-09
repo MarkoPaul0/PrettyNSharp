@@ -37,10 +37,12 @@
                             BorderThickness="{Binding ElementName=SCControl, Path=BorderThickness, FallbackValue=1}"
                             BorderBrush="{Binding ElementName=SCControl, Path=BorderBrush, FallbackValue=Black}">
                         <Grid>
-                            <Path x:Name="CheckMark" Margin="{Binding ElementName=SCControl, Path=MarkMargin, FallbackValue=2}"
-                                Fill="{Binding ElementName=SCControl, Path=MarkBrush, FallbackValue=Black}" Stretch="Uniform"
+                            <Path x:Name="CheckMark" Visibility="{Binding ElementName=SCControl, Path=CheckMarkVisibility, FallbackValue=Collapsed}"
+                                  Margin="{Binding ElementName=SCControl, Path=MarkMargin, FallbackValue=2}"
+                                Fill="{Binding ElementName=SCControl, Path=ActualMarkBrush, FallbackValue=Black}" Stretch="Uniform"
                                 Data="{Binding ElementName=SCControl, Path=Checkmark.Data, FallbackValue={StaticResource DEFAULT_CHECKMARK_GEOM}}" />
-                            <Path x:Name="NullMark" Visibility="Hidden" Margin="{Binding ElementName=SCControl, Path=MarkMargin, FallbackValue=2}"
+                            <Path x:Name="NullMark" Visibility="{Binding ElementName=SCControl, Path=NullMarkVisibility, FallbackValue=Collapsed}" 
+                                  Margin="{Binding ElementName=SCControl, Path=MarkMargin, FallbackValue=2}"
                                 Fill="{Binding ElementName=SCControl, Path=MarkBrush, FallbackValue=Black}" Stretch="Uniform"
                                 Data="{Binding ElementName=SCControl, Path=Nullmark.Data, FallbackValue={StaticResource DEFAULT_NULLMARK_GEOM}}" />
                         </Grid>
@@ -59,15 +61,15 @@
                 </ContentPresenter>
             </BulletDecorator>
             <ControlTemplate.Triggers>
-                <Trigger Property="IsChecked" Value="false">
+                <!--<Trigger Property="IsChecked" Value="false">
                     <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
                 </Trigger>
                 <Trigger Property="IsChecked" Value="{x:Null}">
                     <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed" />
                     <Setter TargetName="NullMark" Property="Visibility" Value="Visible"/>
-                </Trigger>
+                </Trigger>-->
                 <Trigger Property="IsMouseOver" Value="true">
-                    <Setter TargetName="CheckMark" Property="Fill" Value="{Binding ElementName=SCControl, Path=MarkHighlight}" />
+                    <Setter TargetName="CheckMark" Property="Fill" Value="{Binding ElementName=SCControl, Path=ActualMarkHighlight}" />
                     <Setter TargetName="NullMark" Property="Fill" Value="{Binding ElementName=SCControl, Path=MarkHighlight}"/>
                     <Setter TargetName="Border" Property="BorderBrush" Value="{Binding ElementName=SCControl, Path=BorderOnHover, FallbackValue=#007ACC}" />
                 </Trigger>

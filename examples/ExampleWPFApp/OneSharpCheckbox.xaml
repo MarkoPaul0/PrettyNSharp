@@ -17,7 +17,10 @@
             <!--<pns:SharpCheckbox Grid.Column="1" BorderThickness="4" Height="80" CornerRadius="40" MarkMargin="4" 
                                IsThreeState="True" Checkmark="{StaticResource Plus}" Nullmark="{StaticResource Disk}"
                                Click="SharpCheckbox_Click"/>-->
-            <pns:SharpCheckbox Grid.Column="1" BorderThickness="0" Background="Transparent" Checkmark="{StaticResource Star}" Height="80" MarkMargin="4"/>
+            <!--<pns:SharpCheckbox Grid.Column="1" BorderThickness="0" Background="Transparent" Checkmark="{StaticResource Star}" Height="80" MarkMargin="4"/>-->
+            <pns:SharpCheckbox Grid.Column="1" Checkmark="{StaticResource Star}" Height="80" MarkMargin="4" ToggleMode="True" Background="Transparent"
+                               MarkBrush="#007ACC" MarkHighlight="#49B3F9"
+                               UntoggledBrush="Gray" UntoggledHighlight="DarkGray"  IsChecked="False" BorderThickness="0"/>
         </Grid>
     </Border>
 </Window>

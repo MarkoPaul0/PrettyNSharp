@@ -48,18 +48,115 @@ namespace PrettyNSharp
         public CornerRadius CornerRadius { get { return (CornerRadius)GetValue(CornerRadiusProperty); } set { SetValue(CornerRadiusProperty, value); } }
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(SharpCheckbox), new FrameworkPropertyMetadata(default(CornerRadius)));
+
+
+
+        public bool ToggleMode { get { return (bool)GetValue(ToggleModeProperty); } set { SetValue(ToggleModeProperty, value); } }
+        public static readonly DependencyProperty ToggleModeProperty =
+            DependencyProperty.Register("ToggleMode", typeof(bool), typeof(SharpCheckbox), new FrameworkPropertyMetadata(false, new PropertyChangedCallback((d,e) => { ((SharpCheckbox)d).updateBrushes(); })));
+
+        public Brush UntoggledBrush { get { return (Brush)GetValue(UntoggledBrushProperty); } set { SetValue(UntoggledBrushProperty, value); } }
+        public static readonly DependencyProperty UntoggledBrushProperty =
+            DependencyProperty.Register("UntoggledBrush", typeof(Brush), typeof(SharpCheckbox), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.Gray)));
+
+        public Brush UntoggledHighlight { get { return (Brush)GetValue(UntoggledHighlightProperty); } set { SetValue(UntoggledHighlightProperty, value); } }
+        public static readonly DependencyProperty UntoggledHighlightProperty =
+            DependencyProperty.Register("UntoggledHighlight", typeof(Brush), typeof(SharpCheckbox), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.LightGray)));
+        #endregion
+
+        #region GUI Properties
+        private Brush _ActualMarkBrush;
+        public Brush ActualMarkBrush
+        {
+            get { return this._ActualMarkBrush; }
+            set { if (!Object.Equals(value, this._ActualMarkBrush)) { this._ActualMarkBrush = value; this.RaisePropertyChanged(); } }
+        }
+
+        private Brush _ActualMarkHighLight;
+        public Brush ActualMarkHighlight
+        {
+            get { return this._ActualMarkHighLight; }
+            set { if (!Object.Equals(value, this._ActualMarkHighLight)) { this._ActualMarkHighLight = value; this.RaisePropertyChanged(); } }
+        }
+
+        private Visibility _CheckMarkVisibility;
+        public Visibility CheckMarkVisibility
+        {
+            get { return this._CheckMarkVisibility; }
+            set { if (!Object.Equals(value, this._CheckMarkVisibility)) { this._CheckMarkVisibility = value; this.RaisePropertyChanged(); } }
+        }
+
+        private Visibility _NullMarkVisibility;
+        public Visibility NullMarkVisibility
+        {
+            get { return this._NullMarkVisibility; }
+            set { if (!Object.Equals(value, this._NullMarkVisibility)) { this._NullMarkVisibility = value; this.RaisePropertyChanged(); } }
+        }
         #endregion
 
         public SharpCheckbox()
         {
             InitializeComponent();
+            this.Click += (sender, args) => onClick();
             this.Loaded += (sender, args) =>
             {
                 if (this.MarkHighlight == null)
                 {
                     this.MarkHighlight = this.MarkBrush;
                 }
+                this.updateBrushes();
+                this.onClick();
             };
+        }
+
+        private void onClick()
+        {
+            if (ToggleMode)
+            {
+                CheckMarkVisibility = Visibility.Visible;
+                NullMarkVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                if (IsChecked == null)
+                {
+                    CheckMarkVisibility = Visibility.Collapsed;
+                    NullMarkVisibility = Visibility.Visible;
+                }
+                else if (IsChecked == true)
+                {
+                    CheckMarkVisibility = Visibility.Visible;
+                    NullMarkVisibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    CheckMarkVisibility = Visibility.Collapsed;
+                    NullMarkVisibility = Visibility.Collapsed;
+                }
+            }
+            this.updateBrushes();
+        }
+
+        private void updateBrushes()
+        {
+            if (ToggleMode)
+            {
+                if ((bool)IsChecked)
+                {
+                    ActualMarkBrush = MarkBrush;
+                    ActualMarkHighlight = MarkHighlight;
+                }
+                else
+                {
+                    ActualMarkBrush = UntoggledBrush;
+                    ActualMarkHighlight = UntoggledHighlight;
+                }
+            }
+            else
+            {
+                ActualMarkBrush = MarkBrush;
+                ActualMarkHighlight = MarkHighlight;
+            }
         }
 
         #region INotifyPropertyChanged Implementation
