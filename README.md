@@ -49,6 +49,7 @@ The SharpButton is a user control deriving from the standard [C#/WPF Button clas
 * **HighlightBrush**: fill color of the Vector when the mouse is over
 * **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
 * **CornerRadius**: corner radius of your button
+* **ContentDisplay**: select the content displayed by the button ([more on that here](#more_on_content_display))
 
 ## The SharpCheckbox
 
@@ -97,6 +98,7 @@ In any case, the xaml achieving this *never-seen-before level of beauty* is as f
 ```xaml
 <pns:SharpCheckbox BorderThickness="4" Height="50" CornerRadius="25" MarkMargin="5"/>
 ```
+<a name="more_on_content_display"/>
 
 ### A neat feature of SharpButton: ContentDisplay types
 
