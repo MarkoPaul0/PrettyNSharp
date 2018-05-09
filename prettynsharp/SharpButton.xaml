@@ -27,6 +27,7 @@
             <Border x:Name="PART_Border" BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
+                            CornerRadius="{Binding ElementName=SBControl, Path=CornerRadius}"
                             SnapsToDevicePixels="True">
                 <Grid HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>

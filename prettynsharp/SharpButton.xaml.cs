@@ -67,6 +67,11 @@ namespace PrettyNSharp
         public ContentDisplayType ContentDisplay { get { return (ContentDisplayType)GetValue(ContentDisplayProperty); } set { SetValue(ContentDisplayProperty, value); } }
         public static readonly DependencyProperty ContentDisplayProperty =
             DependencyProperty.Register("ContentDisplay", typeof(ContentDisplayType), typeof(SharpButton), new FrameworkPropertyMetadata(ContentDisplayType.IconOnly));
+
+        // Corner radius of the SharpButton
+        public CornerRadius CornerRadius { get { return (CornerRadius)GetValue(CornerRadiusProperty); } set { SetValue(CornerRadiusProperty, value); } }
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(SharpButton), new FrameworkPropertyMetadata(default(CornerRadius)));
         #endregion
 
         #region GUI Properties
