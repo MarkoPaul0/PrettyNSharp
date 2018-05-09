@@ -65,9 +65,9 @@ The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox 
 
 PrettyNSharp controls are customizable just like any other WPF control. Here I will showcase a few things you could do to make your PrettyNSharp controls even prettier!
 
-### Example of customized close SharpButton
-
 <img src="doc/clean_close_button_demo.gif" align="right"/>
+
+### Example of customized close SharpButton
 
 Let's say you want your close button to look like this. In that case I would start by telling you that you are a person with great taste. The cool thing is, your great taste can become reality with with PrettyNSharp.
 The xaml achieving this *level of prettiness* is as follows:
