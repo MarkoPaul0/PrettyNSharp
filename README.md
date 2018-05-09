@@ -47,32 +47,21 @@ The SharpDisplay showcased on the right was produced using the following xaml co
 
 <img src="doc/button_demo.gif" align="right"/>
 
-The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses, which make *a wooOOoooOOoorld of difference*. Such added properties include the ones introduced with SharpDisplay as well as:
+The SharpButton is a user control deriving from the standard [C#/WPF Button class](https://msdn.microsoft.com/en-us/library/system.windows.controls.button(v=vs.110).aspx). It inherits all of its properties and features with a few added bonuses:
 * **HighlightBrush**: fill color of the Vector when the mouse is over
 * **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
+* **CornerRadius**: corner radius of your button
 
 ## The SharpCheckbox
 
 <img src="doc/checkbox_demo.gif" align="right"/>
 
-The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *you guessed it* - a few added bonuses. Such added properties include:
+The SharpCheckbox is a user control deriving from the standard [C#/WPF Checkbox class](https://msdn.microsoft.com/en-us/library/system.windows.controls.checkbox(v=vs.110).aspx). It inherits all of its properties and features with - *you guessed it* - a few added bonuses:
 * **CheckMark** and **NullMark**: set the SVG graphic designs used as checkbox mark when the IsSet property is true and null, repectively
 * **MarkBrush** and **MarkHighligh**: set the fill color for the mark in normal conditions and when the mouse is over, respectively
 * **BorderOnHover**: set the border color when the mouse is over
 * **CornerRadius**: set the border corner radius
 
-
-
-<a name="more_on_size"/>
-
-## More about VectorHeight and VectorWidth
-As seen before, you can control the size of the vector by setting its height and width. Both properties are of type **AdvanceLength**, which allows you to fine tune how you want the vector to be displayed. AdancedLength allows for 3 types of values:
-* **Auto**: this is the default value. The vector will take as much space as available while maitaining its proportions
-* **\***: if set to \*, the vector will take as much space as possible in the corresponding direction
-* **\<percentage>**: if set to 10%, the vector will take 10% of its container in that direction
-* **\<double>**: if set to an absolute value, the vector take that absolute size in that direction
-
-**A cool thing to note is that as long as one dimension is set to Auto, then the vector will maintain its proportions.** So for example you can say "*I want the vector to take 50% of the width of the SharpButton, while keeping its proportions intact*". To do so you simply set `VectorWidth="50%"`. (Since Auto is the default value, you don't have to explicitely set `VectorHeight=Auto`)
 
 ## Customize your PrettyNSharp UI controls
 
@@ -156,6 +145,17 @@ This unparalleled *level of refinement* was achieved with the following xaml:
                      Content="Close" ContentDisplay="{Binding DisplayType}"/>
  </Grid>
 ```
+
+<a name="more_on_size"/>
+
+## More about VectorHeight and VectorWidth
+As seen before, you can control the size of the vector by setting its height and width. Both properties are of type **AdvanceLength**, which allows you to fine tune how you want the vector to be displayed. AdancedLength allows for 3 types of values:
+* **Auto**: this is the default value. The vector will take as much space as available while maitaining its proportions
+* **\***: if set to \*, the vector will take as much space as possible in the corresponding direction
+* **\<percentage>**: if set to 10%, the vector will take 10% of its container in that direction
+* **\<double>**: if set to an absolute value, the vector take that absolute size in that direction
+
+**A cool thing to note is that as long as one dimension is set to Auto, then the vector will maintain its proportions.** So for example you can say "*I want the vector to take 50% of the width of the SharpButton, while keeping its proportions intact*". To do so you simply set `VectorWidth="50%"`. (Since Auto is the default value, you don't have to explicitely set `VectorHeight=Auto`)
 
 ### A neat feature of the SharpCheckbox: "toggle mode"
 (coming soon)
