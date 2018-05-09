@@ -10,6 +10,8 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 |:--:| 
 | *[PrettyNSharp] Scalable Desgin: no more blurry controls!* |
 
+## Usage
+<img src="doc/clean_all_demo.gif" align="center"/>
 
 ## How to get started
 ### To run the demo code with the PrettyNSharp solution
@@ -23,12 +25,8 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 * Add the following PrettyNSharp xmlns mapping `xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"` in all XAML files using PrettyNSharp controls (c.f. [Mapping to custom assemblies](https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/xaml-namespaces-and-namespace-mapping-for-wpf-xaml#mapping-to-custom-classes-and-assemblies))
 * You're ready to rock :thumbsup: If you have issues, look at the [ExampleWPFApp](/examples/ExampleWPFApp)
 
-## Usage
-<img src="doc/clean_all_demo.gif" align="center"/>
-
 <img src="doc/sharpdisplay_details.PNG" align="right"/>
 
-<br>
 
 ## The SharpDisplay 
 
