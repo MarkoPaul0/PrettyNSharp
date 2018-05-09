@@ -69,7 +69,7 @@ PrettyNSharp controls are customizable just like any other WPF control. Here I w
 
 ### Example of customized close SharpButton
 
-<img src="doc/close_button_demo.gif" align="right"/>
+<img src="doc/clean_close_button_demo.gif" align="right"/>
 
 Let's say you want your close button to look like this. In that case I would start by telling you that you are a person with great taste. The cool thing is, your great taste can become reality with with PrettyNSharp.
 The xaml achieving this *level of prettiness* is as follows:
@@ -88,7 +88,7 @@ Of course you can also define a style matching the results shown above, allowing
 
 ### Example of customized SharpCheckbox
 
-<img src="doc/radio_checkbox_demo.gif" align="right"/>
+<img src="doc/clean_custom_checkbox_demo.gif" align="right"/>
 
 Let's say you want your checkboxes to look like this. I actually do not recommand that design because it resembles a radio buttion, especially when unchecked. This example is here to show possibilities by doing something quite *different*.
 
