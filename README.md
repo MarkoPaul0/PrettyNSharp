@@ -171,6 +171,6 @@ I would recommend using [InkScape](https://inkscape.org/en/). It's got all the f
 * Save the document as SVG
 * Open that document in a text editor and find the SVG data.
 * Copy that data into the Data property of a path object ```<Path x:Key="NewDesign" Data="COPY_DATA_HERE"/>```
-* Now assuming this path is in an XAML dictionary, you can now create a sharp control with that vector ``<pns:SharpDisplay Vector={StaticResource NewDesign}>```
+* Now assuming this path is in an XAML dictionary, you can now create a sharp control with that vector ```<pns:SharpDisplay Vector={StaticResource NewDesign}>```
 
 
