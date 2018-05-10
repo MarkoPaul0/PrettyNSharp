@@ -50,6 +50,7 @@ The SharpButton is a user control deriving from the standard [C#/WPF Button clas
 * **BackgroundOnHover** and **BackgroundOnClick**: background color on hover and on click, respectively
 * **CornerRadius**: corner radius of your button
 * **ContentDisplay**: select the content displayed by the button ([more on that here](#more_on_content_display))
+* **ContentLocation**: select the content location when both the icon and content are displayed ([more on that here](#more_on_content_display))
 
 ## The SharpCheckbox
 
@@ -100,19 +101,21 @@ In any case, the xaml achieving this *never-seen-before level of beauty* is as f
 ```
 <a name="more_on_content_display"/>
 
-### A neat feature of SharpButton: ContentDisplay types
+### A neat feature of SharpButton: content display manipulation
 
 Since a picture is worth a 1000 words, let's check that one out.
 
-| ![](doc/display_type_button_demo.gif) |
+| ![](doc/content_display_demo.gif) |
 |:--:| 
-| *[PrettyNSharp] ContentDisplay Type in SharpButton* |
+| *[PrettyNSharp] Content display manipulation in SharpButton* |
 
 This was actually a gif, and since it contains 52 frames, I guess it's worth 52,000 words. *How about that..*<br>
 As you can see, buttons can be switched between 3 types of "Content Display":
 * **IconOnly**: this is the default value, only the SVG is displayed
 * **Both**: both the SVG and the content are diplayed
 * **ContentOnly**: only the content is displayed
+
+When ContentType is in "**Both**" mode, you can select on which side the location is diplayed by modifying the **ContentLocation** property to, Left, Right, Top, or Bottom.
 
 This is very cool - *I decided so* - if you have an app with a lot of menus and buttons. Once you are familiar with that app you might be ok with Icons only, but for a while you might want to have a look at what things mean without having to wait for the tooltip to show up.
 
