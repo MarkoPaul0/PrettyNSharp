@@ -22,7 +22,7 @@ Leverage the power of vector-graphics to create beautiful and scalable custom UI
 * Add the [PrettyNSharp project](prettynsharp/PrettyNSharp.csproj) to your solution (c.f. [Add existing project to solution](https://docs.microsoft.com/en-us/sql/ssms/solution/add-an-existing-project-to-a-solution?view=sql-server-2017))
 * Add a PrettyNSharp reference to every project in your solution using it (c.f [Add project reference](https://msdn.microsoft.com/en-us/library/hh708954.aspx))
 * (Optional) If you want to use my SVG designs, add a reference to the PrettyNSharp [SVG Dictionary](prettynsharp/SVGLibrary.xaml) in your App.xaml (c.f. [Use SVG defined in PrettyNSharp](https://github.com/MarkoPaul0/PrettyNSharp/wiki/Use-SVG-designs-defined-in-PrettyNSharp))
-* Add the following PrettyNSharp xmlns mapping `xmlns:pns="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"` in all XAML files using PrettyNSharp controls (c.f. [Mapping to custom assemblies](https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/xaml-namespaces-and-namespace-mapping-for-wpf-xaml#mapping-to-custom-classes-and-assemblies))
+* Add the following PrettyNSharp xmlns mapping `xmlns:ps="clr-namespace:PrettyNSharp;assembly=PrettyNSharp"` in all XAML files using PrettyNSharp controls (c.f. [Mapping to custom assemblies](https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/xaml-namespaces-and-namespace-mapping-for-wpf-xaml#mapping-to-custom-classes-and-assemblies))
 * You're ready to rock :thumbsup: If you have issues, look at the [ExampleWPFApp](/examples/ExampleWPFApp)
 
 <img src="doc/sharpdisplay_details.PNG" align="right"/>
@@ -37,7 +37,7 @@ The SharpDisplay is a WPF user control which allows you to display SVG data with
 
 The SharpDisplay showcased on the right was produced using the following xaml code:
 ```xaml
-<pns:SharpDisplay  Width="250" Height="250" Background="LightBlue" BorderThickness="1"
+<ps:SharpDisplay  Width="250" Height="250" Background="LightBlue" BorderThickness="1"
                    VectorBrush="#007ACC" Vector="{StaticResource Gear}" VectorHeight="50%"/>
 ```
 
@@ -74,7 +74,7 @@ Let's say you want your close button to look like this. In that case I would sta
 The xaml achieving this *level of prettiness* is as follows:
 
 ```xaml
-<pns:SharpButton Width="100" BorderThickness="0"
+<ps:SharpButton Width="100" BorderThickness="0"
                  Vector="{StaticResource Cross}" VectorHeight="50%" VectorBrush="White" 
                  Background="#E83140" BackgroundOnHover="#E87E87" BackgroundOnClick="#E83140"/>
 ```
@@ -82,21 +82,21 @@ The xaml achieving this *level of prettiness* is as follows:
 Of course you can also define a style matching the results shown above, allowing you to reuse your close button design very quickly. Your xaml could become as simple as:
 
 ```xaml
-<pns:SharpButton style={StaticResource CloseButtonStyle}/>
+<ps:SharpButton style={StaticResource CloseButtonStyle}/>
 ```
 
 ### Example of customized SharpCheckbox
 
 <img src="doc/clean_custom_checkbox_demo.gif" align="right"/>
 
-Let's say you want your checkboxes to look like this. I actually do not recommand that design because it resembles a radio buttion, especially when unchecked. This example is here to show possibilities by doing something quite *different*.
+Let's say you want your checkboxes to look like this. I actually do not recommend that design because it resembles a radio buttion, especially when unchecked. This example is here to show possibilities by doing something quite *different*.
 
 <br>
 
 In any case, the xaml achieving this *never-seen-before level of beauty* is as follows:
 
 ```xaml
-<pns:SharpCheckbox BorderThickness="4" Height="50" CornerRadius="25" MarkMargin="5"/>
+<ps:SharpCheckbox BorderThickness="4" Height="50" CornerRadius="25" MarkMargin="5"/>
 ```
 <a name="more_on_content_display"/>
 
@@ -127,19 +127,19 @@ This unparalleled *level of refinement* was achieved with the following xaml:
         <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
-    <pns:SharpButton Grid.Column="0" BorderThickness="0,0,1,0"
+    <ps:SharpButton Grid.Column="0" BorderThickness="0,0,1,0"
                      Content="Search" Vector="{StaticResource Magnifier}" 
                      VectorHeight="50%" ContentDisplay="{Binding DisplayType}"/>
-    <pns:SharpButton Grid.Column="1" BorderThickness="0,0,1,0"
+    <ps:SharpButton Grid.Column="1" BorderThickness="0,0,1,0"
                      Content="Settings" Vector="{StaticResource Gear}" 
                      VectorHeight="50%" ContentDisplay="{Binding DisplayType}"/>
-    <pns:SharpButton Grid.Column="2" BorderThickness="0,0,1,0" 
+    <ps:SharpButton Grid.Column="2" BorderThickness="0,0,1,0" 
                      Content="Starred!" Vector="{StaticResource Star}" 
                      VectorHeight="50%" ContentDisplay="{Binding DisplayType}"/>
-    <pns:SharpButton Grid.Column="3" BorderThickness="0,0,1,0"
+    <ps:SharpButton Grid.Column="3" BorderThickness="0,0,1,0"
                      Content="Messages" Vector="{StaticResource Mail}" 
                      VectorHeight="50%" ContentDisplay="{Binding DisplayType}"/>
-    <pns:SharpButton Grid.Column="4" BorderThickness="0"
+    <ps:SharpButton Grid.Column="4" BorderThickness="0"
                      Vector="{StaticResource Cross}" VectorHeight="50%" 
                      BackgroundOnHover="#E83140" BackgroundOnClick="#E87E87" 
                      Content="Close" ContentDisplay="{Binding DisplayType}"/>
@@ -179,7 +179,7 @@ I would recommend using [InkScape](https://inkscape.org/en/). It's got all the f
 * Now assuming this path is in an XAML dictionary, you can now create a sharp control with that vector 
 
 ```xaml
-<pns:SharpDisplay Vector="{StaticResource NewDesign}"/>
+<ps:SharpDisplay Vector="{StaticResource NewDesign}"/>
 ```
 
 
