@@ -27,6 +27,7 @@ namespace ExampleWPFApp
         {
             InitializeComponent();
             this.DataContext = this;
+            this.Location = Dock.Right;
         }
 
         private ContentDisplayType _DisplayType;
@@ -35,6 +36,14 @@ namespace ExampleWPFApp
             get { return this._DisplayType; }
             set { if (!Object.Equals(value, this._DisplayType)) { this._DisplayType = value; this.RaisePropertyChanged(); } }
         }
+
+        private Dock _Location;
+        public Dock Location
+        {
+            get { return this._Location; }
+            set { if (!Object.Equals(value, this._Location)) { this._Location = value; this.RaisePropertyChanged(); } }
+        }
+
 
 
         private void SharpButton_Click(object sender, RoutedEventArgs e)
@@ -50,6 +59,26 @@ namespace ExampleWPFApp
             else
             {
                 this.DisplayType = ContentDisplayType.Both;
+            }
+        }
+
+        private void SharpButton_Click2(object sender, RoutedEventArgs e)
+        {
+            if (this.Location == Dock.Bottom)
+            {
+                this.Location = Dock.Left;
+            }
+            else if (this.Location == Dock.Left)
+            {
+                this.Location = Dock.Top;
+            }
+            else if (this.Location == Dock.Right)
+            {
+                this.Location = Dock.Bottom;
+            }
+            else
+            {
+                this.Location = Dock.Right;
             }
         }
 

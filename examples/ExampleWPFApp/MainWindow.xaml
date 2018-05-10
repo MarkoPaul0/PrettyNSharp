@@ -22,7 +22,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Grid Height="40">
+                    <Grid Height="40"  Margin="20,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -31,25 +31,31 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <pns:SharpButton Margin="0,0" Grid.Column="0" Vector="{StaticResource Magnifier}" VectorHeight="50%"  BorderThickness="0,0,1,0"
-                             Content="Search" ContentDisplay="{Binding DisplayType}"/>
-                        <pns:SharpButton Margin="0,0" Grid.Column="1" Vector="{StaticResource Gear}" VectorHeight="50%"  BorderThickness="0,0,1,0"
+                             Content="Search" ContentDisplay="{Binding DisplayType}" ContentLocation="{Binding Location}"/>
+                        <pns:SharpButton Margin="0,0" Grid.Column="1" Vector="{StaticResource Gear}" ContentLocation="{Binding Location}" VectorHeight="50%"  BorderThickness="0,0,1,0"
                              Content="Settings" ContentDisplay="{Binding DisplayType}"/>
-                        <pns:SharpButton Margin="0,0" Grid.Column="2" BorderThickness="0,0,1,0" 
+                        <pns:SharpButton Margin="0,0" Grid.Column="2" BorderThickness="0,0,1,0" ContentLocation="{Binding Location}"
                                      Content="Starred!" Vector="{StaticResource Star}" VectorHeight="50%" 
-                                     ContentDisplay="{Binding DisplayType}"/>
+                                     ContentDisplay="{Binding DisplayType}" />
                         <pns:SharpButton Margin="0,0" Grid.Column="3" Vector="{StaticResource Mail}" VectorHeight="50%"  BorderThickness="0,0,1,0"
-                                     Content="Messages" ContentDisplay="{Binding Path=DisplayType}"/>
+                                     Content="Messages" ContentDisplay="{Binding Path=DisplayType}" ContentLocation="{Binding Location}"/>
                         <pns:SharpButton Margin="0,0" Grid.Column="4" Vector="{StaticResource Cross}" VectorHeight="50%" 
-                             BackgroundOnHover="#E83140" BackgroundOnClick="#E87E87" BorderThickness="0"
+                             BackgroundOnHover="#E83140" BackgroundOnClick="#E87E87" BorderThickness="0" ContentLocation="{Binding Location}"
                              Content="Close" ContentDisplay="{Binding DisplayType}"/>
                     </Grid>
                     
                     <!--CLICK ON THAT BUTTON TO SWITCH DISPLAY-->
-                    <pns:SharpButton Height="30" Grid.Row="1" Content="Switch Display Type" ContentDisplay="ContentOnly" Click="SharpButton_Click" Grid.ColumnSpan="5" Margin="20,5"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <pns:SharpButton Height="30" Grid.Column="0" Content="Switch Display Type" ContentDisplay="ContentOnly" Click="SharpButton_Click"  Margin="20,0"/>
+                        <pns:SharpButton Height="30" Grid.Column="1" Content="Switch Content Location" ContentDisplay="ContentOnly" Click="SharpButton_Click2" Margin="20,0"/>
+                    </Grid>
 
 
-
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>

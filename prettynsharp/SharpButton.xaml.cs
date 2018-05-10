@@ -68,6 +68,11 @@ namespace PrettyNSharp
         public static readonly DependencyProperty ContentDisplayProperty =
             DependencyProperty.Register("ContentDisplay", typeof(ContentDisplayType), typeof(SharpButton), new FrameworkPropertyMetadata(ContentDisplayType.IconOnly));
 
+        // Select the location of the content with respect to the icon: left, right, top, or bottom
+        public Dock ContentLocation { get { return (Dock)GetValue(ContentLocationProperty); } set { SetValue(ContentLocationProperty, value); } }
+        public static readonly DependencyProperty ContentLocationProperty =
+            DependencyProperty.Register("ContentLocation", typeof(Dock), typeof(SharpButton), new FrameworkPropertyMetadata(Dock.Right));
+
         // Corner radius of the SharpButton
         public CornerRadius CornerRadius { get { return (CornerRadius)GetValue(CornerRadiusProperty); } set { SetValue(CornerRadiusProperty, value); } }
         public static readonly DependencyProperty CornerRadiusProperty =

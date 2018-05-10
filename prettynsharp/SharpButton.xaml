@@ -30,49 +30,63 @@
                             CornerRadius="{Binding ElementName=SBControl, Path=CornerRadius}"
                             SnapsToDevicePixels="True">
                 <Grid HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Path x:Name="PART_Vector" Grid.Column="0" Stretch="{Binding ElementName=SBControl, Path=VectorStretch, FallbackValue=Uniform}" 
+                    <DockPanel>
+                        <ContentPresenter x:Name="PART_Content" 
+                                      DockPanel.Dock="{Binding ElementName=SBControl, Path=ContentLocation, FallbackValue=Right}"
+                                      Margin="{Binding ElementName=SBControl, Path=ContentMargin}"
+                                      MaxWidth="{Binding ElementName=PART_Border, Path=ActualWidth}">
+                            <ContentPresenter.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Foreground" Value="{Binding ElementName=PART_Vector, Path=Fill}"/>
+                                    <Setter Property="HorizontalAlignment" Value="{Binding ElementName=SBControl, Path=HorizontalContentAlignment}"/>
+                                    <Setter Property="VerticalAlignment" Value="{Binding ElementName=SBControl, Path=VerticalContentAlignment}"/>
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                </Style>
+                            </ContentPresenter.Resources>
+                            <ContentPresenter.Style>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=SBControl, Path=ContentDisplay}" Value="IconOnly">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentPresenter.Style>
+                        </ContentPresenter>
+                        <!---The rectangle acts as a spacer between the Vector and The content when both are displayed-->
+                        <Rectangle Fill="Transparent" Width="4" Height="4"
+                                   DockPanel.Dock="{Binding ElementName=SBControl, Path=ContentLocation, FallbackValue=Right}">
+                            <Rectangle.Style>
+                                <Style TargetType="{x:Type Rectangle}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=SBControl, Path=ContentDisplay}" Value="Both">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Rectangle.Style>
+                        </Rectangle>
+
+                        <Path x:Name="PART_Vector"
+                              Stretch="{Binding ElementName=SBControl, Path=VectorStretch, FallbackValue=Uniform}" 
                           Data="{Binding ElementName=SBControl, Path=Vector.Data, FallbackValue={StaticResource MISSING_VECTOR}}" 
                           Fill="{Binding ElementName=SBControl, Path=VectorBrush, FallbackValue=#ACACAC}"
                           Width="{Binding ElementName=SBControl, Path=ActualVectorWidth}"
                           Height="{Binding ElementName=SBControl, Path=ActualVectorHeight}">
-                        <Path.Style>
-                            <Style TargetType="{x:Type Path}">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=SBControl, Path=ContentDisplay}" Value="ContentOnly">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Path.Style>
-                    </Path>
-                    <ContentPresenter x:Name="PART_Content" Grid.Column="1"
-                                      Margin="{Binding ElementName=SBControl, Path=ContentMargin}"
-                                      MaxWidth="{Binding ElementName=PART_Border, Path=ActualWidth}">
-                        <ContentPresenter.Resources>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Margin" Value="4,0,0,0"/>
-                                <Setter Property="Foreground" Value="{Binding ElementName=PART_Vector, Path=Fill}"/>
-                                <Setter Property="HorizontalAlignment" Value="{Binding ElementName=SBControl, Path=HorizontalContentAlignment}"/>
-                                <Setter Property="VerticalAlignment" Value="{Binding ElementName=SBControl, Path=VerticalContentAlignment}"/>
-                                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-                            </Style>
-                        </ContentPresenter.Resources>
-                        <ContentPresenter.Style>
-                            <Style TargetType="{x:Type ContentPresenter}">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=SBControl, Path=ContentDisplay}" Value="IconOnly">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ContentPresenter.Style>
-                    </ContentPresenter>
+                            <Path.Style>
+                                <Style TargetType="{x:Type Path}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=SBControl, Path=ContentDisplay}" Value="ContentOnly">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Style>
+                        </Path>
+                    </DockPanel>
                 </Grid>
             </Border>
             <ControlTemplate.Triggers>
