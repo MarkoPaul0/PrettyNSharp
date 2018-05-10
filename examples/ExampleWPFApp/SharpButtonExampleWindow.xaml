@@ -25,9 +25,9 @@
             <TextBlock Grid.Column="0" Grid.Row="1" Text="SharpButton" VerticalAlignment="Center" Margin="8" FontSize="14" FontWeight="Bold"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="SharpCheckbox" VerticalAlignment="Center" Margin="8" FontSize="14" FontWeight="Bold"/>
 
-            <TextBlock Grid.Column="3" Grid.Row="0" Text="&lt;pns:SharpDisplay/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
-            <TextBlock Grid.Column="3" Grid.Row="1" Text="&lt;pns:SharpButton/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
-            <TextBlock Grid.Column="3" Grid.Row="2" Text="&lt;pns:SharpCheckbox/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
+            <TextBlock Grid.Column="3" Grid.Row="0" Text="&lt;ps:SharpDisplay/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
+            <TextBlock Grid.Column="3" Grid.Row="1" Text="&lt;ps:SharpButton/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="&lt;ps:SharpCheckbox/>" VerticalAlignment="Center" Margin="8" FontSize="14" Foreground="#007ACC"/>
             <pns:SharpDisplay  Grid.Column="1" Height="70"
                                        Background="White"
                                        VectorBrush="Black"
