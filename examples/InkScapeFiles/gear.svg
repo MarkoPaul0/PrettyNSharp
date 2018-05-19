@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="mks_gear.svg">
+  <defs
+     id="defs2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="553.98544"
+     inkscape:cy="594.88881"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:snap-grids="false"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-nodes="true"
+     inkscape:snap-others="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid10" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="stroke-width:0.75926948"
+       d="M 403.57227 220.73828 A 317.48031 317.48031 0 0 0 354.09766 224.8125 L 343.07617 290.71094 C 317.46716 296.98108 293.45516 307.1017 271.54297 320.43164 L 217.22266 281.66211 A 317.48031 317.48031 0 0 0 146.99609 351.78516 L 185.91406 406.30078 C 172.70981 428.04811 162.69302 451.92267 156.42383 477.30469 L 90.429688 488.32617 A 317.48031 317.48031 0 0 0 86.091797 538.21875 A 317.48031 317.48031 0 0 0 90.214844 588.07812 L 156.42383 599.13281 C 161.57236 620.01912 169.04829 639.97042 178.98242 658.46875 L 136.96484 710.51172 A 317.48031 317.48031 0 0 0 203.70117 784.58008 L 260.32227 749.00977 C 285.05966 765.93033 313.04524 778.36674 343.07617 785.73633 L 354.06445 851.42188 A 317.48031 317.48031 0 0 0 403.57227 855.69922 A 317.48031 317.48031 0 0 0 453.79883 851.5332 L 464.76367 785.73633 C 490.05306 779.55045 513.75951 769.60725 535.47656 756.50586 L 589.49219 795.08398 A 317.48031 317.48031 0 0 0 660.45312 724.25391 L 621.92773 670.23828 C 635.16995 648.41805 645.24098 624.501 651.4707 599.00586 L 716.7168 588.11133 A 317.48031 317.48031 0 0 0 721.05273 538.21875 A 317.48031 317.48031 0 0 0 716.93164 488.36328 L 651.44727 477.43945 C 646.5493 457.41419 639.40639 438.2717 630.10547 420.41797 L 671.85352 368.6543 A 317.48031 317.48031 0 0 0 605.94727 293.75977 L 549.78125 329.06836 C 524.43264 311.35737 495.71884 298.27846 464.74414 290.68945 L 453.83594 225.13086 A 317.48031 317.48031 0 0 0 403.57227 220.73828 z M 403.57227 374.18164 A 164.03825 164.03825 0 0 1 567.61133 538.2168 A 164.03825 164.03825 0 0 1 403.57227 702.25586 A 164.03825 164.03825 0 0 1 239.5332 538.2168 A 164.03825 164.03825 0 0 1 403.57227 374.18164 z M 403.57227 387.03906 A 151.1811 151.1811 0 0 0 252.39062 538.2168 A 151.1811 151.1811 0 0 0 403.57227 689.39844 A 151.1811 151.1811 0 0 0 554.75391 538.2168 A 151.1811 151.1811 0 0 0 403.57227 387.03906 z M 404.64062 410.66016 C 475.06029 410.66016 532.19531 467.78484 532.19531 538.21875 C 532.19531 608.64208 475.06029 665.7793 404.64062 665.7793 C 334.20883 665.7793 277.08594 608.64208 277.08594 538.21875 C 277.08594 467.78484 334.20883 410.66016 404.64062 410.66016 z "
+       transform="scale(0.26458333)"
+       id="settings_1_" />
+  </g>
+</svg>
